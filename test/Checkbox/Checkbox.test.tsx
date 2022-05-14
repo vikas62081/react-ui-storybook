@@ -7,6 +7,6 @@ const text = 'Click Me!';
 describe('<ContainedCheckbox />', () => {
   test('renders ContainedCheckbox component with out discription', () => {
     render(<ContainedCheckbox label={text} />);
-    expect(screen.getByText('Click Me!')).toBeInTheDocument();
+    expect(screen.getByText(`${text}`)).toBeInTheDocument();
   });
 });

@@ -1,31 +1,7 @@
 import { createTheme } from '@mui/material/styles';
-import {COLORS} from './colors'
+import { COLORS } from './colors';
+
 export const theme = createTheme({
-  components: {
-  //   MuiButton: {
-  //     styleOverrides: {
-  //       root: {
-  //         '&:focus': {
-  //           outlineStyle: 'solid',
-  //           outlineColor: sherpa['A700'],
-  //           outlineWidth: 'thin',
-  //         },
-  //       },
-  //     },
-  //   },
-    MuiListItemIcon: { styleOverrides: { root: { color: '#0C2744' } } },
-    MuiListItem: {
-      styleOverrides: {
-        root: {
-          color: COLORS.FIREFLY[500],
-          '&:hover': {
-            background: COLORS.FIREFLY[50],
-            color: COLORS.FIREFLY[500],
-          },
-        },
-      },
-    },
-  },
   palette: {
     primary: {
       main: COLORS.FIREFLY[500],
@@ -37,7 +13,7 @@ export const theme = createTheme({
       main: COLORS.MINT[200],
     },
     error: {
-      main: COLORS.FIREFLY[200],
+      main: COLORS.FLAMINGO[200],
     },
     info: {
       main: COLORS.FIREFLY[500],

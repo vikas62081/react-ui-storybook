@@ -2,8 +2,7 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { ContainedButton, ButtonProps } from '../src';
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
-import VerifiedUserRoundedIcon from '@mui/icons-material/VerifiedUserRounded';
-import WarningIcon from '@mui/icons-material/Warning';
+
 const meta: Meta = {
   title: 'Components/Atoms/Button',
   component: ContainedButton,
@@ -42,6 +41,10 @@ const meta: Meta = {
   },
   parameters: {
     controls: { expanded: true },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/wDnN6FrtMTtJ6W0IworORn/myCOI-Design-System?node-id=588%3A13133',
+    },
   },
 };
 
@@ -49,28 +52,12 @@ export default meta;
 
 const Template: Story<ButtonProps> = (args) => <ContainedButton {...args} />;
 
-export const primary = Template.bind({});
-export const Secondary = Template.bind({});
-export const Neutral = Template.bind({});
+export const ButtonContainer = Template.bind({});
 
-primary.args = {
+ButtonContainer.args = {
   children: 'Click Me',
   variant: 'contained',
   color: 'primary',
   startIcon: <VerifiedUserOutlinedIcon />,
   endIcon: <VerifiedUserOutlinedIcon />,
-};
-Secondary.args = {
-  children: 'Click Me',
-  variant: 'contained',
-  color: 'secondary',
-  startIcon: <VerifiedUserRoundedIcon />,
-  endIcon: <VerifiedUserRoundedIcon />,
-};
-Neutral.args = {
-  children: 'Click Me',
-  variant: 'contained',
-  color: 'ff',
-  startIcon: <VerifiedUserRoundedIcon />,
-  endIcon: <VerifiedUserRoundedIcon />,
 };

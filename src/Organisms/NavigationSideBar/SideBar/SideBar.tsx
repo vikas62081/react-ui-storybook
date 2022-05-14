@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import { Drawer } from '../Drawer/Drawer';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeftRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRightRounded';
 import { SideBarItem } from '../SideBarItems/SideBarItems';
-import { useStyles } from './SideBar.styles';
+import { GridContainer, GridItem, MyIconButton } from '../navigation.styles';
 import { SideBarFooter } from '../SideBarFooter/SideBarFooter';
+
 import { Grid } from '@mui/material';
 
 export type ItemProps = {
@@ -21,7 +21,6 @@ export type SideBarProps = {
 };
 
 export const SideBar = ({ checked, SideBarItems }: SideBarProps) => {
-  const classes = useStyles();
   const [open, setOpen] = useState(checked);
 
   const handleDrawerClose = () => {
@@ -32,25 +31,21 @@ export const SideBar = ({ checked, SideBarItems }: SideBarProps) => {
     <Box sx={{ display: 'flex' }} data-testid="nextGen-sideBar">
       <Drawer variant="permanent" open={open}>
         <SideBarItem SideBarItems={SideBarItems} />
-        <Grid container className={classes.footerContainer} rowSpacing={4}>
-          <Grid item sm={12} className={classes.sidebarActionContainer}>
-            <IconButton
-              className={classes.sidebarActionIcon}
-              onClick={handleDrawerClose}
-              data-testid="handle-click"
-            >
-              {open ? (
-                <ChevronRightIcon color="secondary" />
-              ) : (
-                <ChevronLeftIcon color="secondary" />
-              )}
-            </IconButton>
-          </Grid>
+        <GridItem>
+          <MyIconButton onClick={handleDrawerClose} data-testid="handle-click">
+            {open ? (
+              <ChevronRightIcon color="secondary" />
+            ) : (
+              <ChevronLeftIcon color="secondary" />
+            )}
+          </MyIconButton>
+        </GridItem>
+        <GridContainer>
           <Grid item sm={12}>
             <Divider />
             <SideBarFooter open={open} />
           </Grid>
-        </Grid>
+        </GridContainer>
       </Drawer>
     </Box>
   );

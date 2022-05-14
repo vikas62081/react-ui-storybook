@@ -1,39 +1,48 @@
 import React, { useState } from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import ListItem from '@mui/material/ListItem';
-import List from '@mui/material/List';
+import { ListContainer } from '../navigation.styles';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { Link } from 'react-router-dom';
 import ListItemText from '@mui/material/ListItemText';
-import { useStyles } from '../../../global.styles';
+import { useStyles } from '../navigation.styles';
 import { ItemProps } from '../SideBar/SideBar';
 
 export const SideBarItem = (props: any) => {
   const classes = useStyles();
+
   const [active, setActive] = useState(-1);
   const handleChange = (index: number) => {
     setActive(index);
   };
   return (
-    <List data-testid="To-be-Active">
+    <ListContainer data-testid="To-be-Active">
       {props?.SideBarItems?.map((SideBarItem: ItemProps, index: number) => (
-        <ListItem
-          button
-          color="primary"
-          key={SideBarItem.title}
-          className={
-            active === index ? classes.selected : classes.iconBackground
-          }
-          component={Link}
-          onClick={() => handleChange(index)}
+        <Link
           to={SideBarItem.to}
+          style={{ color: 'inherit', textDecoration: 'inherit' }}
         >
-          <Tooltip title={SideBarItem.title}>
-            <ListItemIcon color="primary">{SideBarItem.icon}</ListItemIcon>
-          </Tooltip>
-          <ListItemText primary={SideBarItem.title} />
-        </ListItem>
+          <ListItem
+            button
+            key={SideBarItem.title}
+            className={
+              active === index ? classes.selected : classes.notSelected
+            }
+            onClick={() => handleChange(index)}
+          >
+            <Tooltip title={SideBarItem.title}>
+              <ListItemIcon
+                className={
+                  active === index ? classes.activeIcon : classes.inactiveIcon
+                }
+              >
+                {SideBarItem.icon}
+              </ListItemIcon>
+            </Tooltip>
+            <ListItemText primary={SideBarItem.title} />
+          </ListItem>
+        </Link>
       ))}
-    </List>
+    </ListContainer>
   );
 };

@@ -23,6 +23,7 @@ export const SideBarItem = (props: any) => {
           style={{ color: 'inherit', textDecoration: 'inherit' }}
         >
           <ListItem
+            style={{ margin: '4px 0' }}
             button
             key={SideBarItem.title}
             className={

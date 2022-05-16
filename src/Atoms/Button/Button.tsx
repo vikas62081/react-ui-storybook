@@ -1,12 +1,8 @@
 import React from 'react';
 import Button from '@mui/material/Button';
+import { ButtonProps } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { getButtonColors } from './buttonColors';
-
-export interface ButtonProps {
-  children: string;
-  color: string;
-}
 
 export const ContainedButton = ({
   children,

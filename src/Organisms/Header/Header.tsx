@@ -1,17 +1,18 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
+import AppBar, { AppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { COLORS } from '../../colors';
-
-const ButtonAppBar = ({ children, ...props }) => {
+import styled from '@emotion/styled';
+const StyledAppBar = styled(AppBar)({
+  minHeight: 88,
+  justifyContent: 'center',
+  backgroundColor: COLORS.WHITE,
+  color: COLORS.FIREFLY[50],
+});
+const ButtonAppBar = ({ children, ...props }: AppBarProps) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        style={{ background: COLORS.WHITE, color: COLORS.FIREFLY[50] }}
-        {...props}
-      >
-        {children}
-      </AppBar>
+      <StyledAppBar {...props}>{children}</StyledAppBar>
     </Box>
   );
 };

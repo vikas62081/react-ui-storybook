@@ -45,19 +45,12 @@ export default meta;
 const Template: Story<SideBarProps> = (args) => (
   <ButtonAppBar>
     <Toolbar>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        sx={{ mr: 2 }}
-      >
-        <MenuIcon />
-      </IconButton>
       <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
         News
       </Typography>
-      <ContainedButton color="secondary">Explore myCOI Central</ContainedButton>
+      <ContainedButton sx={{ mr: 2 }} color="secondary">
+        Explore myCOI Central
+      </ContainedButton>
       <ContainedButton color="secondary">Feedback</ContainedButton>
     </Toolbar>
   </ButtonAppBar>

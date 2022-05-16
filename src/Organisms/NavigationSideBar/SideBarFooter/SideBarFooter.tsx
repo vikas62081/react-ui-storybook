@@ -13,9 +13,9 @@ export const SideBarFooter = (props: any) => {
     <div>
       <ListItem button className={classes.inactiveIcon}>
         <ListItemIcon className={classes.footerLogo}>
-          <SvgIcon component={MycoiLogo} />
+          <SvgIcon component={MycoiLogo} fontSize="large" />
         </ListItemIcon>
-        <ListItemText primary="Powered by myCOI" />
+        {props.open && <ListItemText primary="Powered by myCOI" />}
       </ListItem>
       <div className={props.open ? classes.footerDetails : classes.hide}>
         <Grid container>

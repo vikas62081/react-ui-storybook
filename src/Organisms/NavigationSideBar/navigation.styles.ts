@@ -43,6 +43,7 @@ export const useStyles = makeStyles({
   },
   footerLinks: {
     color: COLORS.BUTTER[500],
+    textDecoration:'underline',
     '&:hover': {
       color: COLORS.WHITE,
     },

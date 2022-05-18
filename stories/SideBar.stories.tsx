@@ -9,6 +9,7 @@ import BookmarkRoundedIcon from '@mui/icons-material/BookmarkRounded';
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import { SideBar, SideBarProps } from '../src';
+import { MycoiLogo } from '../src/Atoms/IconCompoenent/MycoiLogo';
 
 const meta: Meta = {
   title: 'Components/Organisms/SideBar',
@@ -42,7 +43,11 @@ const Template: Story<SideBarProps> = (args) => <SideBar {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  checked: true,
+  company: 'Company Name',
+  address: '2642 Ross Street #1138c Chicago, IL ',
+  email: 'morehumanthanhuman.com',
+  phone: '60605 708-252-0235',
+  image: MycoiLogo,
   SideBarItems: [
     {
       title: 'Home',

@@ -42,19 +42,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<SideBarProps> = (args) => (
-  <ButtonAppBar>
-    <Toolbar>
-      <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-        News
-      </Typography>
-      <ContainedButton sx={{ mr: 2 }} color="secondary">
-        Explore myCOI Central
-      </ContainedButton>
-      <ContainedButton color="secondary">Feedback</ContainedButton>
-    </Toolbar>
-  </ButtonAppBar>
-);
+const Template: Story<SideBarProps> = (args) => <ButtonAppBar></ButtonAppBar>;
 
 export const Default = Template.bind({});
 

@@ -9,6 +9,7 @@ import { GridContainer, GridItem, MyIconButton } from '../navigation.styles';
 import { SideBarFooter } from '../SideBarFooter/SideBarFooter';
 
 import { Grid } from '@mui/material';
+import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 
 export type ItemProps = {
   title: string;
@@ -18,9 +19,22 @@ export type ItemProps = {
 export type SideBarProps = {
   checked: boolean;
   SideBarItems: ItemProps[];
+  company?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  image?: ReactJSXElement;
 };
 
-export const SideBar = ({ checked, SideBarItems }: SideBarProps) => {
+export const SideBar = ({
+  checked,
+  SideBarItems,
+  company,
+  address,
+  phone,
+  email,
+  image,
+}: SideBarProps) => {
   const [open, setOpen] = useState(checked);
 
   const handleDrawerClose = () => {
@@ -43,7 +57,14 @@ export const SideBar = ({ checked, SideBarItems }: SideBarProps) => {
         <GridContainer>
           <Grid item sm={12}>
             <Divider />
-            <SideBarFooter open={open} />
+            <SideBarFooter
+              open={open}
+              company={company}
+              address={address}
+              phone={phone}
+              email={email}
+              image={image}
+            />
           </Grid>
         </GridContainer>
       </Drawer>

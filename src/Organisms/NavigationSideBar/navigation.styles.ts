@@ -1,13 +1,24 @@
 import { makeStyles } from '@mui/styles';
-//import { theme } from '../../theme';
 import { COLORS } from '../../colors';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
-import { Grid, List } from '@mui/material';
+import {
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  List,
+  Typography,
+} from '@mui/material';
+import { TOP } from './Drawer/Drawer';
 
 export const useStyles = makeStyles({
   hide: {
     visibility: 'hidden',
+  },
+  link: {
+    color: 'black',
+    textDecoration: 'none',
   },
   notSelected: {
     '&:hover': {
@@ -43,7 +54,7 @@ export const useStyles = makeStyles({
   },
   footerLinks: {
     color: COLORS.BUTTER[500],
-    textDecoration:'underline',
+    textDecoration: 'underline',
     '&:hover': {
       color: COLORS.WHITE,
     },
@@ -52,13 +63,35 @@ export const useStyles = makeStyles({
     },
   },
 });
+export const StyledMenu = styled(Button)({
+  color: 'black',
+});
+export const ClientCard = styled(Card)({
+  margin: 16,
+});
+export const StyledTypography = styled(Typography)({
+  textAlign: 'center',
+  whiteSpace: 'normal',
+});
+export const ClientContent = styled(CardContent)({
+  backgroundColor: COLORS.FIREFLY[50],
+  borderRadius: 2,
+  margin: 8,
+  paddingTop: 8,
+  paddingRight: 0,
+  paddingLeft: 0,
+});
+export const ClientImage = styled(Grid)({
+  paddingTop: 8,
+  textAlign: 'center',
+});
 export const ListContainer = styled(List)({
   padding: '8px',
   columnGap: 8,
 });
 export const GridContainer = styled(Grid)({
   position: 'absolute',
-  bottom: 0,
+  bottom: TOP,
   container: true,
   rowspacing: 4,
 });

@@ -10,7 +10,7 @@ export const theme = createTheme({
       main: COLORS.SLATE[200],
     },
     success: {
-      main: COLORS.MINT[200],
+      main: COLORS.MINT[500],
     },
     error: {
       main: COLORS.FLAMINGO[200],

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import { Drawer } from '../Drawer/Drawer';
 import Divider from '@mui/material/Divider';
@@ -9,7 +9,8 @@ import { GridContainer, GridItem, MyIconButton } from '../navigation.styles';
 import { SideBarFooter } from '../SideBarFooter/SideBarFooter';
 
 import { Grid } from '@mui/material';
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+import { COLORS } from '../../../colors';
+import { getSidebarState, setSidebarState } from '../../../utility';
 
 export type ItemProps = {
   title: string;
@@ -17,40 +18,41 @@ export type ItemProps = {
   to: string;
 };
 export type SideBarProps = {
-  checked: boolean;
-  SideBarItems: ItemProps[];
+  checked?: boolean;
+  SideBarItems?: ItemProps[];
   company?: string;
   address?: string;
   phone?: string;
   email?: string;
-  image?: ReactJSXElement;
+  image?: string;
+  activeIndex?: number;
 };
 
 export const SideBar = ({
-  checked,
   SideBarItems,
+  activeIndex,
   company,
   address,
   phone,
   email,
   image,
 }: SideBarProps) => {
-  const [open, setOpen] = useState(checked);
-
+  let open = getSidebarState();
   const handleDrawerClose = () => {
-    setOpen(!open);
+    open = setSidebarState();
+    window.location.reload();
   };
 
   return (
     <Box sx={{ display: 'flex' }} data-testid="nextGen-sideBar">
       <Drawer variant="permanent" open={open}>
-        <SideBarItem SideBarItems={SideBarItems} />
+        <SideBarItem SideBarItems={SideBarItems} activeIndex={activeIndex} />
         <GridItem>
           <MyIconButton onClick={handleDrawerClose} data-testid="handle-click">
             {open ? (
-              <ChevronRightIcon color="secondary" />
+              <ChevronRightIcon style={{ color: COLORS.WHITE }} />
             ) : (
-              <ChevronLeftIcon color="secondary" />
+              <ChevronLeftIcon style={{ color: COLORS.WHITE }} />
             )}
           </MyIconButton>
         </GridItem>

@@ -43,7 +43,7 @@ Default.args = {
 };
 Secondary.args = {
   label: 'Click Me',
-  color: 'secondary',
+  color: 'success',
 };
 Disabled.args = {
   label: 'Radio',

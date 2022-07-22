@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ContainedButton } from '../../src';
+import { ContainedButton } from '../../../src';
 
 const text = 'Click Me!';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { SideBarItem } from '../../src';
+import { SideBarItem } from '../../../../src';
 
 // mock data
 
@@ -13,7 +13,5 @@ describe('SideBarItem component ', () => {
       </Router>
     );
     expect(screen.getByTestId('To-be-Active')).toBeInTheDocument();
-
-    test;
   });
 });

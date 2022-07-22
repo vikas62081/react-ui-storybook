@@ -1,11 +1,18 @@
 import React from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import { Card, CardContent, Grid, Link, Typography } from '@mui/material';
-import { MycoiLogo } from '../../../Atoms/IconCompoenent/MycoiLogo';
-import { SvgIcon } from '@mui/material';
+import { Grid, Link } from '@mui/material';
 import ListItemText from '@mui/material/ListItemText';
-import { useStyles } from '../navigation.styles';
+import { Image } from '../../../Common/Iconimage';
+import myCOILog from '../../../assets/myCOI.svg';
+
+import {
+  ClientCard,
+  ClientImage,
+  StyledTypography,
+  useStyles,
+  ClientContent,
+} from '../navigation.styles';
 
 export const SideBarFooter = (props: any) => {
   const { open, company, address, phone, email, image } = props;
@@ -13,21 +20,21 @@ export const SideBarFooter = (props: any) => {
   return (
     <div>
       {open && (
-        <Card style={{ margin: 16 }}>
-          <Grid textAlign="center">
-            <SvgIcon component={image} fontSize="large" />
-          </Grid>
-          <CardContent>
-            <Typography>{company}</Typography>
-            <Typography style={{ whiteSpace: 'normal' }}>{address}</Typography>
-            <Typography>{phone}</Typography>
-            <Typography>{email}</Typography>
-          </CardContent>
-        </Card>
+        <ClientCard>
+          <ClientImage>
+            <Image link={image} />
+          </ClientImage>
+          <ClientContent>
+            <StyledTypography>{company}</StyledTypography>
+            <StyledTypography>{address}</StyledTypography>
+            <StyledTypography>{phone}</StyledTypography>
+            <StyledTypography>{email}</StyledTypography>
+          </ClientContent>
+        </ClientCard>
       )}
       <ListItem button className={classes.inactiveIcon}>
         <ListItemIcon className={classes.footerLogo}>
-          <SvgIcon component={MycoiLogo} fontSize="large" />
+          <Image link={myCOILog} height={20} width={20} />
         </ListItemIcon>
         {open && <ListItemText primary="Powered by myCOI" />}
       </ListItem>

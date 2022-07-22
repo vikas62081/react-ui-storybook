@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ContainedCheckbox } from '../../src';
+import { CombinedRadio } from '../../../src';
 
 const text = 'Click Me!';
 
 describe('<ContainedCheckbox />', () => {
   test('renders ContainedCheckbox component with out discription', () => {
-    render(<ContainedCheckbox label={text} />);
+    render(<CombinedRadio label={text} />);
     expect(screen.getByText(`${text}`)).toBeInTheDocument();
   });
 });

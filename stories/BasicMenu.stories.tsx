@@ -1,20 +1,25 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { ButtonAppBarProps } from '../src';
-import { ButtonAppBar } from '../src';
-import myCOILogo from '../src/assets/myCOI.svg';
+import { BasicMenu, MenuProps } from '../src';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import LockIcon from '@mui/icons-material/Lock';
 
 const meta: Meta = {
-  title: 'Components/Organisms/Header',
-  component: ButtonAppBar,
+  title: 'Components/Atoms/Basicmenu',
+  component: BasicMenu,
   argTypes: {
     onClick: { action: 'clicked' },
-    title: {
+    variant: {
       control: {
-        type: 'text',
+        type: 'select',
+        options: ['text', 'contained', 'outlined'],
+      },
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: ['small', 'medium', 'large'],
       },
     },
     disabled: {
@@ -27,23 +32,20 @@ const meta: Meta = {
     controls: { expanded: true },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/hwMJlFL4e49ojm5qOKZRgy/myCoi-Navigation?node-id=0%3A1',
+      url: 'https://www.figma.com/file/wDnN6FrtMTtJ6W0IworORn/myCOI-Design-System?node-id=588%3A13133',
     },
   },
 };
 
 export default meta;
 
-const Template: Story<ButtonAppBarProps> = (args) => <ButtonAppBar {...args} />;
+const Template: Story<MenuProps> = (args) => <BasicMenu {...args} />;
 
-export const Default = Template.bind({});
+export const SelectContainer = Template.bind({});
 
-Default.args = {
-  title1: 'Explore myCOI Central',
-  title2: 'Feedback',
+SelectContainer.args = {
   userName: 'TestUser',
-  image: myCOILogo,
-  menuList: [
+  list: [
     {
       title: 'Account Settings',
       icon: <SettingsIcon fontSize="small" />,

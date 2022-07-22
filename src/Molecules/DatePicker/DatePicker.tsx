@@ -1,5 +1,5 @@
 import React from 'react';
-import 'rsuite/dist/rsuite.min.css';
+//import 'rsuite/dist/rsuite.min.css';
 import './Styles.css';
 import { DatePicker } from 'rsuite';
 

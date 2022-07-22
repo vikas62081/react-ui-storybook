@@ -53,7 +53,7 @@ Default.args = {
 Secondary.args = {
   label: 'Click Me',
   variant: 'contained',
-  color: 'secondary',
+  color: 'success',
 };
 Disabled.args = {
   label: 'Label',

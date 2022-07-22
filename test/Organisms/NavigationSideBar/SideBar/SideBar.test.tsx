@@ -2,7 +2,7 @@ import React from 'react';
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import { SideBar } from '../../src';
+import { SideBar } from '../../../../src';
 
 // mock data
 const mockItems = [
@@ -12,7 +12,7 @@ const mockItems = [
     to: '/',
   },
 ];
-const checked = true;
+const checked = false;
 
 describe('SideBar component ', () => {
   test(' initial renders  ', () => {
@@ -31,6 +31,6 @@ describe('SideBar component ', () => {
     );
     const toggleEl = screen.getByTestId('handle-click');
     userEvent.click(toggleEl);
-    expect(checked).toBeFalsy;
+    expect(checked).toBeFalsy();
   });
 });

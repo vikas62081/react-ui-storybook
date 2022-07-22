@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { ContainedButton, ButtonProps } from '../src';
+import { ContainedButton } from '../src';
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
 
 const meta: Meta = {
@@ -50,7 +50,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<ButtonProps> = (args) => <ContainedButton {...args} />;
+const Template: Story = (args) => <ContainedButton {...args} />;
 
 export const ButtonContainer = Template.bind({});
 

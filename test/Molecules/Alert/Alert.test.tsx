@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { CombinedAlert } from '../../src';
+import { CombinedAlert } from '../../../src';
 
 const text = 'Error Alert!';
 const description = 'allow me';

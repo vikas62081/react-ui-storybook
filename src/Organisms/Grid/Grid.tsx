@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-enterprise';
 import 'ag-grid-community/styles/ag-grid.css';
@@ -24,6 +24,7 @@ export const Grid = () => {
       filter: true,
       resizable: true,
       suppressMenu: true,
+      sortable: true,
     };
   }, []);
 
@@ -67,6 +68,7 @@ export const Grid = () => {
   const onGridReady = (params: any) => {
     console.log(params);
     setGridApi(params);
+    restoreState();
   };
   const onFilter = (a: any, b: any, c: any) => {
     var countryFilterComponent = gridApi.api.getFilterInstance(a);
@@ -101,6 +103,31 @@ export const Grid = () => {
     return Demo;
   }, []);
 
+  const saveState = useCallback(() => {
+    localStorage.setItem(
+      'colState',
+      JSON.stringify(gridRef.current!.columnApi.getColumnState())
+    );
+    console.log('column state saved');
+  }, []);
+
+  const restoreState = useCallback(() => {
+    const a = localStorage.getItem('colState');
+    if (!a) {
+      console.log('no columns state to restore by, you must save state first');
+      return;
+    }
+    gridRef.current!.columnApi.applyColumnState({
+      state: JSON.parse(a),
+      applyOrder: true,
+    });
+    console.log('column state restored');
+  }, []);
+
+  const resetState = useCallback(() => {
+    gridRef.current!.columnApi.resetColumnState();
+    console.log('column state reset');
+  }, []);
   return (
     <div>
       {a.map((dt) => (
@@ -112,11 +139,13 @@ export const Grid = () => {
         </>
       ))}
       <FadeMenu />
+
       <select onChange={(e) => onFilter('make', 'contains', e?.target?.value)}>
         <option value={''}>Select</option>
         <option value="Toyota">Toyota</option>
         <option value="Ford">Ford</option>
       </select>
+
       <div style={gridStyle} className="ag-theme-material">
         <AgGridReact
           ref={gridRef}
@@ -132,7 +161,7 @@ export const Grid = () => {
             toolPanels: [
               {
                 id: 'columns',
-                labelDefault: 'Ayyappa',
+                labelDefault: 'Columns',
                 labelKey: 'columns',
                 iconKey: 'columns',
                 toolPanel: 'agColumnsToolPanel',
@@ -156,6 +185,19 @@ export const Grid = () => {
                   suppressExpandAll: true,
                   suppressFilterSearch: true,
                 },
+              },
+              {
+                id: 'filters 2',
+                labelKey: 'filters',
+                labelDefault: 'Filters xxx',
+                iconKey: 'save',
+                toolPanel: () => (
+                  <div>
+                    <button onClick={saveState}>Save State</button>
+                    <button onClick={restoreState}>Restore State</button>
+                    <button onClick={resetState}>Reset State</button>
+                  </div>
+                ),
               },
             ],
             // hiddenByDefault: true,

@@ -14,13 +14,15 @@ tr:nth-child(even) {
     --ag-odd-row-background-color: #F2F5FA;
     --ag-header-column-resize-handle-color: rgb(126, 46, 132);
   
-    --ag-font-size: 18px;
-    --ag-font-family: monospace;
+    /* --ag-font-size: 18px; */
+    --ag-font-family: arial;
     /* font-family: 'SF Pro Text'; */
 
 
     --ag-borders-row:2px solid;
     --ag-row-border-color:green;
+
+    /* --ag-selected-row-background-color */
   }
 
   .ag-theme-material .ag-header-container .ag-header-row.ag-header-row-column{
@@ -42,4 +44,26 @@ tr:nth-child(even) {
     height: 100%;
     width: 100%;
     padding: 5px;
+  }
+
+ 
+  .ag-theme-material .ag-standard-button {
+    padding: 6px 20px;
+    margin: 0 5px;
+    border-radius: 3px
+  }
+  
+  .ag-filter button[ref=applyFilterButton] {
+    color: #fff;
+    background: #0C2744;
+  }
+  .ag-filter button[ref=resetFilterButton] {
+    background-color: #F2F5FA;
+    color: #081D35;
+  }
+  .ag-filter .ag-wrapper.ag-input-wrapper.ag-text-field-input-wrapper input[ref=eInput]{
+    border:1px #B6BEC7 solid;
+    border-radius: 5px;
+    padding-bottom:0;
+    padding:20px;
   }

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
+import './index.css';
 import {
   ColDef,
   DetailGridInfo,
@@ -7,7 +8,7 @@ import {
   ICellRendererParams,
 } from 'ag-grid-community';
 
-const Demo = ({ node, api }: ICellRendererParams) => {
+const MiniGrid = ({ node, api }: ICellRendererParams) => {
   const rowId = node.id!;
   const rows = [
     {
@@ -108,7 +109,7 @@ const Demo = ({ node, api }: ICellRendererParams) => {
   };
 
   return (
-    <div className="full-width-panel">
+    <div className="full-width-panel ag-theme-material">
       AVAILABLE FORMS
       <AgGridReact
         data-id="detailGrid=1"
@@ -123,4 +124,4 @@ const Demo = ({ node, api }: ICellRendererParams) => {
   );
 };
 
-export default Demo;
+export default MiniGrid;

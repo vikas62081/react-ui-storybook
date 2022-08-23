@@ -40,10 +40,9 @@ tr:nth-child(even) {
 
 .full-width-panel {
     position: relative;
-    background: #edf6ff;
-    height: 100%;
+    background: #E2E8F0;
+    height: 400px;
     width: 100%;
-    padding: 5px;
   }
 
  
@@ -66,4 +65,8 @@ tr:nth-child(even) {
     border-radius: 5px;
     padding-bottom:0;
     padding:20px;
+  }
+
+  .mini-table{
+    padding: 20px 32px;
   }

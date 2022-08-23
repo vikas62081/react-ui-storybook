@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import './index.css';
 import {
   ColDef,
   DetailGridInfo,
   GridReadyEvent,
   ICellRendererParams,
 } from 'ag-grid-community';
+import './index.css';
 
 const MiniGrid = ({ node, api }: ICellRendererParams) => {
   const rowId = node.id!;
@@ -94,6 +94,7 @@ const MiniGrid = ({ node, api }: ICellRendererParams) => {
   const defaultColDef: ColDef = {
     flex: 1,
     minWidth: 120,
+    sortable: true,
   };
 
   const onGridReady = (params: GridReadyEvent) => {
@@ -109,17 +110,19 @@ const MiniGrid = ({ node, api }: ICellRendererParams) => {
   };
 
   return (
-    <div className="full-width-panel ag-theme-material">
-      AVAILABLE FORMS
-      <AgGridReact
-        data-id="detailGrid=1"
-        className="full-width-grid ag-theme-alpine"
-        columnDefs={colDefs}
-        defaultColDef={defaultColDef}
-        rowData={rows}
-        rowSelection={'multiple'}
-        onGridReady={onGridReady}
-      />
+    <div className="mini-table">
+      <h3>AVAILABLE FORMS</h3>
+
+      <div className="full-width-panel ag-theme-material">
+        <AgGridReact
+          data-id="detailGrid=1"
+          columnDefs={colDefs}
+          defaultColDef={defaultColDef}
+          rowData={rows}
+          rowSelection={'multiple'}
+          onGridReady={onGridReady}
+        />
+      </div>
     </div>
   );
 };

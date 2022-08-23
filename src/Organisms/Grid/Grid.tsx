@@ -94,6 +94,7 @@ export const Grid = () => {
           onGridReady={onGridReady}
           rowModelType={'serverSide'}
           serverSideInfiniteScroll={true}
+          detailRowAutoHeight={true}
           masterDetail={true}
           rowSelection="multiple"
           cacheBlockSize={6}

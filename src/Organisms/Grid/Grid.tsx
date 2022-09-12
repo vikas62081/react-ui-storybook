@@ -1,6 +1,12 @@
 'use strict';
 
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-enterprise';
 import 'ag-grid-community/styles/ag-grid.css';
@@ -13,7 +19,9 @@ export const Grid = () => {
   const gridRef = useRef<any>(null);
   const [gridApi, setGridApi] = useState<any>(null);
   const gridStyle = useMemo(() => ({ height: 600, width: '100%' }), []);
-  console.log(gridApi);
+  const [status, setStatus] = useState<any>({});
+  const [request, setRequest] = useState<any>({});
+
   const defaultColDef = useMemo<ColDef>(() => {
     return {
       flex: 1,
@@ -49,12 +57,10 @@ export const Grid = () => {
     { field: 'email' },
     { field: 'avatar' },
   ]);
-  // useEffect(() => {
-  //   fetch('https://reqres.in/api/users')
-  //     .then((resp) => resp.json())
-  //     .then((resp) => setRowData(resp?.data));
-  // }, []);
-
+  useEffect(() => {
+    setRequest(status);
+    console.log('called');
+  }, [status]);
   const onGridReady = useCallback((params: any) => {
     setGridApi(params);
 
@@ -66,13 +72,13 @@ export const Grid = () => {
         )
           .then((resp) => resp.json())
           .then((data) => {
-            console.log(params);
             console.log(
               'asking for ' +
                 params?.request.startRow +
                 ' to ' +
                 params?.request.endRow
             );
+            setStatus({ ...params?.request, total: data.total });
             params.successCallback(data.data, data.total);
           });
       },
@@ -84,8 +90,53 @@ export const Grid = () => {
     return MiniGrid;
   }, []);
 
+  const cbChanged = (evt: any) => {
+    const isSelectAll = evt.target.checked;
+    gridApi.api.forEachNode((node: any) => {
+      node.setSelected(isSelectAll);
+    });
+  };
+  const statusBar = {
+    statusPanels: [
+      {
+        statusPanel: () => <h1> {gridApi?.api?.getSelectedRows()?.length}</h1>,
+      },
+      // {
+      //   statusPanel: (props: any) => (
+      //     <div style={{ height: 50 }}>
+      //       {console.log('status', props.api.getRenderedNodes())}
+      //       Showing {request?.endRow} of {request?.total}
+      //     </div>
+      //   ),
+      //   align: 'left',
+      // },
+      {
+        statusPanel: 'agTotalRowCountComponent',
+        align: 'left',
+      },
+      // { statusPanel: 'agFilteredRowCountComponent' },
+      // { statusPanel: 'agSelectedRowCountComponent' },
+      // { statusPanel: 'agAggregationComponent' },
+      // {
+      //   statusPanel: 'agAggregationComponent',
+      //   statusPanelParams: {
+      //     // possible values are: 'count', 'sum', 'min', 'max', 'avg'
+      //     aggFuncs: ['avg', 'sum'],
+      //   },
+      // },
+    ],
+  };
   return (
     <div>
+      Select All
+      <input type="checkbox" onChange={cbChanged} />
+      <button
+        onClick={() => {
+          console.log(gridApi.api.getSelectedRows());
+        }}
+      >
+        Export
+      </button>
       <div style={gridStyle} className="ag-theme-material">
         <AgGridReact
           ref={gridRef}
@@ -124,6 +175,7 @@ export const Grid = () => {
             // hiddenByDefault: true,
             // defaultToolPanel: 'columns',
           }}
+          statusBar={statusBar}
         ></AgGridReact>
       </div>
     </div>

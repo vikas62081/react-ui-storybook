@@ -1,12 +1,6 @@
 'use strict';
 
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-enterprise';
 import 'ag-grid-community/styles/ag-grid.css';
@@ -19,8 +13,6 @@ export const Grid = () => {
   const gridRef = useRef<any>(null);
   const [gridApi, setGridApi] = useState<any>(null);
   const gridStyle = useMemo(() => ({ height: 600, width: '100%' }), []);
-  const [status, setStatus] = useState<any>({});
-  const [request, setRequest] = useState<any>({});
 
   const defaultColDef = useMemo<ColDef>(() => {
     return {
@@ -57,10 +49,7 @@ export const Grid = () => {
     { field: 'email' },
     { field: 'avatar' },
   ]);
-  useEffect(() => {
-    setRequest(status);
-    console.log('called');
-  }, [status]);
+
   const onGridReady = useCallback((params: any) => {
     setGridApi(params);
 
@@ -78,7 +67,7 @@ export const Grid = () => {
                 ' to ' +
                 params?.request.endRow
             );
-            setStatus({ ...params?.request, total: data.total });
+
             params.successCallback(data.data, data.total);
           });
       },

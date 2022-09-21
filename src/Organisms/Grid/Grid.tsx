@@ -9,11 +9,14 @@ import 'ag-grid-community/styles/ag-theme-material.css';
 import './index.css';
 import MiniGrid from './miniGrid';
 import { ColDef, IDatasource } from 'ag-grid-community';
+
+const MAX_LIMIT = 100;
+
 export const Grid = () => {
   const gridRef = useRef<any>(null);
   const [gridApi, setGridApi] = useState<any>(null);
   const gridStyle = useMemo(() => ({ height: 600, width: '100%' }), []);
-
+  const [request, setRequest] = useState<any>();
   const defaultColDef = useMemo<ColDef>(() => {
     return {
       flex: 1,
@@ -33,7 +36,7 @@ export const Grid = () => {
   const filterParams = { values: ['Eve', 'Ayyappa'] };
   const [columnDefs] = useState([
     {
-      field: 'id',
+      field: '_id',
       cellRenderer: 'agGroupCellRenderer',
       headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
@@ -41,13 +44,20 @@ export const Grid = () => {
     },
 
     {
-      field: 'first_name',
+      field: 'name',
       filter: 'agSetColumnFilter',
       filterParams: filterParams,
     },
-    { field: 'last_name' },
-    { field: 'email' },
-    { field: 'avatar' },
+    { field: 'trips' },
+
+    {
+      field: 'Airline Name',
+      valueFormatter: (data: any) => data.data.airline[0].name,
+    },
+    {
+      field: 'Airline Country',
+      valueFormatter: (data: any) => data.data.airline[0].country,
+    },
   ]);
 
   const onGridReady = useCallback((params: any) => {
@@ -57,18 +67,18 @@ export const Grid = () => {
       rowCount: undefined,
       getRows: (params: any) => {
         fetch(
-          `https://reqres.in/api/users?page=${params.request.startRow / 6 + 1}`
+          `https://api.instantwebtools.net/v1/passenger?page=${
+            params?.request.startRow / MAX_LIMIT + 1
+          }&size=${MAX_LIMIT}`
         )
           .then((resp) => resp.json())
-          .then((data) => {
-            console.log(
-              'asking for ' +
-                params?.request.startRow +
-                ' to ' +
-                params?.request.endRow
-            );
-
-            params.successCallback(data.data, data.total);
+          .then((resp) => {
+            console.log(params);
+            setRequest({
+              total: resp?.totalPassengers,
+              end: params?.request.endRow,
+            });
+            params.successCallback(resp.data);
           });
       },
     };
@@ -85,36 +95,7 @@ export const Grid = () => {
       node.setSelected(isSelectAll);
     });
   };
-  const statusBar = {
-    statusPanels: [
-      {
-        statusPanel: () => <h1> {gridApi?.api?.getSelectedRows()?.length}</h1>,
-      },
-      // {
-      //   statusPanel: (props: any) => (
-      //     <div style={{ height: 50 }}>
-      //       {console.log('status', props.api.getRenderedNodes())}
-      //       Showing {request?.endRow} of {request?.total}
-      //     </div>
-      //   ),
-      //   align: 'left',
-      // },
-      {
-        statusPanel: 'agTotalRowCountComponent',
-        align: 'left',
-      },
-      // { statusPanel: 'agFilteredRowCountComponent' },
-      // { statusPanel: 'agSelectedRowCountComponent' },
-      // { statusPanel: 'agAggregationComponent' },
-      // {
-      //   statusPanel: 'agAggregationComponent',
-      //   statusPanelParams: {
-      //     // possible values are: 'count', 'sum', 'min', 'max', 'avg'
-      //     aggFuncs: ['avg', 'sum'],
-      //   },
-      // },
-    ],
-  };
+
   return (
     <div>
       Select All
@@ -137,10 +118,10 @@ export const Grid = () => {
           detailRowAutoHeight={true}
           masterDetail={true}
           rowSelection="multiple"
-          cacheBlockSize={6}
+          cacheBlockSize={MAX_LIMIT}
           // cacheOverflowSize={2}
           maxConcurrentDatasourceRequests={1}
-          infiniteInitialRowCount={6}
+          infiniteInitialRowCount={MAX_LIMIT}
           detailCellRenderer={detailCellRenderer}
           sideBar={{
             toolPanels: [
@@ -164,8 +145,17 @@ export const Grid = () => {
             // hiddenByDefault: true,
             // defaultToolPanel: 'columns',
           }}
-          statusBar={statusBar}
         ></AgGridReact>
+        <div
+          style={{
+            background: '#f3f5fa',
+            padding: 10,
+            textAlign: 'right',
+            borderTop: '1px black solid',
+          }}
+        >
+          <p>{`Showing ${request?.end} of ${request?.total}`}</p>
+        </div>
       </div>
     </div>
   );

@@ -43,6 +43,7 @@ const Template: Story<SideBarProps> = (args) => <SideBar {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
+  isEnterpriseChild: true,
   company: 'Company Name',
   address: '2642 Ross Street #1138c Chicago, IL ',
   email: 'morehumanthanhuman.com',

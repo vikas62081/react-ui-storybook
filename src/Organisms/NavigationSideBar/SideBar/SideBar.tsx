@@ -1,7 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import { Drawer } from '../Drawer/Drawer';
-import Divider from '@mui/material/Divider';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeftRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRightRounded';
 import { SideBarItem } from '../SideBarItems/SideBarItems';
@@ -36,6 +35,7 @@ export const SideBar = ({
   phone,
   email,
   image,
+  ...rest
 }: SideBarProps) => {
   let open = getSidebarState();
   const handleDrawerClose = () => {
@@ -50,15 +50,14 @@ export const SideBar = ({
         <GridItem>
           <MyIconButton onClick={handleDrawerClose} data-testid="handle-click">
             {open ? (
-              <ChevronRightIcon style={{ color: COLORS.WHITE }} />
+              <ChevronLeftIcon style={{ color: COLORS.SLATE[400] }} />
             ) : (
-              <ChevronLeftIcon style={{ color: COLORS.WHITE }} />
+              <ChevronRightIcon style={{ color: COLORS.SLATE[400] }} />
             )}
           </MyIconButton>
         </GridItem>
         <GridContainer>
           <Grid item sm={12}>
-            <Divider />
             <SideBarFooter
               open={open}
               company={company}
@@ -66,6 +65,7 @@ export const SideBar = ({
               phone={phone}
               email={email}
               image={image}
+              {...rest}
             />
           </Grid>
         </GridContainer>

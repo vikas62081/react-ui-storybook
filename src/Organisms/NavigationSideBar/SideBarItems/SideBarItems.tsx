@@ -20,13 +20,14 @@ export const SideBarItem = (props: any) => {
       <ListContainer data-testid="To-be-Active">
         {props?.SideBarItems?.map((SideBarItem: ItemProps, index: number) => (
           <a
+            key={index}
             href={SideBarItem.to}
             style={{ color: 'inherit', textDecoration: 'inherit' }}
           >
             <ListItem
               style={{ margin: '4px 0' }}
               button
-              key={SideBarItem.title}
+              key={index}
               className={
                 active === index ? classes.selected : classes.notSelected
               }

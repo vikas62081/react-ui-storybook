@@ -41,6 +41,7 @@ export const Default = Template.bind({});
 Default.args = {
   title1: 'Explore myCOI Central',
   title2: 'Feedback',
+  clientId: 'Kim',
   userName: 'TestUser',
   image: myCOILogo,
   menuList: [

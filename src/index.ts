@@ -9,4 +9,3 @@ export * from './Atoms/Radio/Radio';
 export * from './Molecules/DatePicker/DatePicker';
 export * from './Molecules/DateRange/DateRange';
 export * from './Organisms/Header/Header';
-export * from './Organisms/Grid/Grid'

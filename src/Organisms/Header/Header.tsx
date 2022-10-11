@@ -3,7 +3,7 @@ import AppBar, { AppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { COLORS } from '../../colors';
 import styled from '@emotion/styled';
-import { Toolbar } from '@mui/material';
+import { Divider, Toolbar } from '@mui/material';
 import { ContainedButton } from '../../Atoms/Button/Button';
 import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -24,6 +24,7 @@ export type ListProps = {
 export type ButtonAppBarProps = {
   title1?: string;
   title2?: string;
+  clientId?: string;
   userName?: string;
   image?: string;
   appBar?: AppBarProps;
@@ -36,6 +37,7 @@ export const ButtonAppBar = ({
   image,
   userName,
   menuList,
+  clientId,
   ...props
 }: ButtonAppBarProps) => {
   return (
@@ -44,8 +46,35 @@ export const ButtonAppBar = ({
         <Toolbar>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Image link={image} height={40} width={40} />
+            <Divider
+              style={{ padding: '0 5px' }}
+              orientation="vertical"
+              variant="middle"
+              flexItem
+            />
+            {clientId && (
+              <div style={{ padding: '0 20px', paddingTop: '6px' }}>
+                <div
+                  style={{
+                    color: COLORS.SLATE[500],
+                    fontWeight: 500,
+                    fontSize: 13,
+                  }}
+                >
+                  IMPERSONATING
+                </div>
+                <div
+                  style={{
+                    color: COLORS.FIREFLY[700],
+                    fontWeight: 500,
+                    fontSize: 14,
+                  }}
+                >
+                  {clientId}
+                </div>
+              </div>
+            )}
           </Box>
-
           <ContainedButton sx={{ mr: 2 }} color="secondary" size="small">
             {title1}
           </ContainedButton>

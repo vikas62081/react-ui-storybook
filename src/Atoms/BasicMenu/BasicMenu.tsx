@@ -47,8 +47,8 @@ export const BasicMenu = ({ list, userName }: MenuProps) => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        {list?.map((li: ListProps) => (
-          <MenuItem onClick={handleClose}>
+        {list?.map((li: ListProps, index: number) => (
+          <MenuItem onClick={handleClose} key={index}>
             <a href={li.to} className={classes.link}>
               <ListItemIcon>{li.icon}</ListItemIcon>
               {li.title}

@@ -1,13 +1,13 @@
 import { styled, Theme, CSSObject } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
-import { COLORS } from '../../../colors';
+import { THEME_PROVIDER } from '../../../colors';
 
 const drawerWidth = 264;
 export const TOP = 80;
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
-  background: COLORS.FIREFLY[500],
-  color: COLORS.WHITE,
+  background: THEME_PROVIDER.secondary,
+  color: THEME_PROVIDER.primary,
   top: TOP,
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -22,8 +22,8 @@ const closedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  background: COLORS.FIREFLY[500],
-  color: COLORS.WHITE,
+  background: THEME_PROVIDER.secondary,
+  color: THEME_PROVIDER.primary,
   top: TOP,
   width: `calc(${theme.spacing(9)} + 1px)`,
   [theme.breakpoints.up('sm')]: {

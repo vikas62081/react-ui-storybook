@@ -8,7 +8,7 @@ const image = require('@rollup/plugin-image');
 module.exports = {
   // This function will run for each entry/format/env combination
   rollup(config, opts) {
-    config.plugins = config.plugins.map((p) =>
+    config.plugins = config.plugins.map(p =>
       p.name === 'replace'
         ? replace({
             'process.env.NODE_ENV': JSON.stringify(opts.env),

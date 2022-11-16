@@ -64,14 +64,14 @@ export const BasicMenu = ({ list, userName }: MenuProps) => {
         }}
       >
         {list?.map((li: ListProps, index: number) => (
-          <a href={li.To} className={classes.link} key={index}>
+          <a href={li?.to} className={classes?.link} key={index}>
             <MenuItem onClick={handleClose} className={classes.menuItem}>
-              {li.Icon && (
+              {li?.icon && (
                 <ListItemIcon style={{ minWidth: '30px' }}>
-                  <img width={20} src={li.Icon} />
+                  {li?.icon}
                 </ListItemIcon>
               )}
-              {li.Title}
+              {li?.title}
             </MenuItem>
           </a>
         ))}

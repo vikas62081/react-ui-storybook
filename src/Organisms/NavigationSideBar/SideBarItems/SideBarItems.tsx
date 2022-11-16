@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import ListItem from '@mui/material/ListItem';
 import { ListContainer } from '../navigation.styles';
@@ -6,7 +6,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useStyles } from '../navigation.styles';
 import { ItemProps } from '../SideBar/SideBar';
-import { getActiveTabState, setActiveTabState } from '../../../utility';
 
 export type SidebarProps = {
   SideBarItems: ItemProps[] | undefined;
@@ -14,27 +13,11 @@ export type SidebarProps = {
 };
 
 export const SideBarItem = (props: SidebarProps) => {
-  // const active = getActiveTabState();
   const classes = useStyles();
-
-  const getActiveState = () => {
-    if (props.SideBarItems) {
-      const currentIdx = props.SideBarItems.findIndex(
-        (SideBarItem) => SideBarItem.To == window.location.pathname
-      );
-      if (currentIdx != null) {
-        setActiveTabState(currentIdx);
-        return currentIdx;
-      } else {
-        return getActiveTabState();
-      }
-    } else {
-      return getActiveTabState();
-    }
-  };
+  const [active, setActive] = useState(0);
 
   const handleChange = (index: number) => {
-    setActiveTabState(index);
+    setActive(index);
   };
   return (
     <>
@@ -42,7 +25,7 @@ export const SideBarItem = (props: SidebarProps) => {
         {props?.SideBarItems?.map((SideBarItem: ItemProps, index: number) => (
           <a
             key={index}
-            href={SideBarItem.To}
+            href={SideBarItem?.to}
             style={{ color: 'inherit', textDecoration: 'inherit' }}
           >
             <ListItem
@@ -50,27 +33,21 @@ export const SideBarItem = (props: SidebarProps) => {
               button
               key={index}
               className={
-                getActiveState() === index
-                  ? classes.selected
-                  : classes.notSelected
+                active === index ? classes?.selected : classes?.notSelected
               }
               onClick={() => handleChange(index)}
             >
-              <Tooltip title={SideBarItem.Title}>
+              <Tooltip title={SideBarItem?.title}>
                 <ListItemIcon
                   sx={{ minWidth: '48px' }}
                   // className={
                   //   active === index ? classes.activeIcon : classes.inactiveIcon
                   // }
                 >
-                  <img
-                    width={30}
-                    src={SideBarItem.Icon}
-                    style={{ marginLeft: '-3px' }}
-                  />
+                  {SideBarItem?.icon}
                 </ListItemIcon>
               </Tooltip>
-              <ListItemText primary={SideBarItem.Title} />
+              <ListItemText primary={SideBarItem?.title} />
             </ListItem>
           </a>
         ))}

@@ -9,12 +9,11 @@ import { SideBarFooter } from '../SideBarFooter/SideBarFooter';
 
 import { Grid } from '@mui/material';
 import { COLORS } from '../../../colors';
-import { getSidebarState, setSidebarState } from '../../../utility';
 
 export type ItemProps = {
-  Title: string;
-  Icon: string;
-  To: string;
+  title: string;
+  icon: string;
+  to: string;
 };
 export type SideBarProps = {
   checked?: boolean;
@@ -39,10 +38,10 @@ export const SideBar = ({
   isEnterpriseChild,
   ...rest
 }: SideBarProps) => {
-  const [open, setOpen] = React.useState(getSidebarState());
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerClose = () => {
-    setOpen(setSidebarState());
+    setOpen(!open);
   };
 
   return (

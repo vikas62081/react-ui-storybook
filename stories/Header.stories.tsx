@@ -58,4 +58,10 @@ Default.args = {
       icon: <LogoutOutlinedIcon fontSize="small" />,
     },
   ],
+  optionList: [
+    {
+      title: 'Account Settings',
+      icon: <SettingsIcon fontSize="small" />,
+    },
+  ],
 };

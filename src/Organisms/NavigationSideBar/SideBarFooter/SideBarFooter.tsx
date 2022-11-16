@@ -4,8 +4,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import { Grid, Link } from '@mui/material';
 import ListItemText from '@mui/material/ListItemText';
 import { Image } from '../../../Common/Iconimage';
-import myCOILog from '../../../assets/myCOI.svg';
 import Divider from '@mui/material/Divider';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import {
   ClientCard,
@@ -20,10 +20,11 @@ export const SideBarFooter = (props: any) => {
   const { open, company, address, phone, email, image, isEnterpriseChild } =
     props;
   const classes = useStyles();
+  const hideCard = useMediaQuery('(min-height:900px)');
   return (
     <div>
       {open && <Divider />}
-      {open && isEnterpriseChild && (
+      {open && isEnterpriseChild && hideCard && (
         <ClientCard>
           <ClientImage>
             <Image link={image} />
@@ -32,22 +33,32 @@ export const SideBarFooter = (props: any) => {
             <StyledCompanyTypography>{company}</StyledCompanyTypography>
             <StyledTypography>{address}</StyledTypography>
             <StyledTypography>{phone}</StyledTypography>
-            <StyledTypography>{email}</StyledTypography>
+            <StyledTypography sx={{ width: '230px', wordWrap: 'break-word' }}>
+              {email}
+            </StyledTypography>
           </ClientContent>
         </ClientCard>
       )}
       {open && (
-        <ListItem button className={classes.FooterIcon}>
+        <ListItem className={classes.FooterIcon}>
           <ListItemIcon className={classes.footerLogo}>
-            <Image link={myCOILog} height={20} width={20} />
+            <Image link="/images/icons/myCOI.svg" height={20} width={20} />
           </ListItemIcon>
-          <ListItemText secondary="Powered by myCOI" />
+          <ListItemText className={classes.poweredBy}>
+            Powered by myCOI
+          </ListItemText>
         </ListItem>
       )}
       <div className={open ? classes.footerDetails : classes.hide}>
         <Grid container>
           <Grid item sm={6}>
-            <Link className={classes.footerLinks}>Privacy Policy</Link>
+            <Link
+              className={classes.footerLinks}
+              href="https://mycoitracking.com/privacy-policy"
+              target="_blank"
+            >
+              Privacy Policy
+            </Link>
           </Grid>
           <Grid item sm={6}>
             <Link className={classes.footerLinks}> Terms & conditions</Link>

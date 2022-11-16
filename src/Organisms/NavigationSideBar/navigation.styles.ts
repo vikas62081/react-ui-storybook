@@ -17,13 +17,23 @@ export const useStyles = makeStyles({
     visibility: 'hidden',
   },
   link: {
-    color: 'black',
+    color: COLORS.FIREFLY[500],
     textDecoration: 'none',
+    '&:hover': {
+      color: COLORS.FIREFLY[500],
+    },
+  },
+  menuItem: {
+    '&:hover': {
+      backgroundColor: COLORS.SLATE[100],
+    },
   },
   notSelected: {
+    color: THEME_PROVIDER.notSelected.color,
     '&:hover': {
       background: THEME_PROVIDER.notSelected.bg,
       borderRadius: '4px',
+      color: THEME_PROVIDER.notSelected.color,
     },
   },
   selected: {
@@ -67,12 +77,19 @@ export const useStyles = makeStyles({
   footerLinks: {
     color: COLORS.FIREFLY[200],
     textDecoration: 'underline',
+    fontSize: 12,
+    fontWeight: 500,
     '&:hover': {
       color: COLORS.FIREFLY[500],
     },
     '&:active': {
       color: COLORS.MINT[500],
     },
+  },
+  poweredBy: {
+    fontWeight: 500,
+    color: COLORS.FIREFLY[500],
+    textDecoration: 'none',
   },
 });
 export const StyledMenu = styled(Button)({
@@ -85,7 +102,7 @@ export const ClientCard = styled(Card)({
 export const StyledTypography = styled(Typography)({
   textAlign: 'center',
   whiteSpace: 'normal',
-  fontWeight: 300,
+  fontWeight: 400,
   fontSize: 13,
   color: COLORS.FIREFLY[500],
   paddingRight: 20,
@@ -94,7 +111,7 @@ export const StyledTypography = styled(Typography)({
 export const StyledCompanyTypography = styled(Typography)({
   textAlign: 'center',
   whiteSpace: 'normal',
-  fontWeight: 500,
+  fontWeight: 600,
   fontSize: 14,
   color: COLORS.FIREFLY[500],
 });

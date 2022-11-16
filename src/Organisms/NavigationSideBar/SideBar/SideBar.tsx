@@ -12,9 +12,9 @@ import { COLORS } from '../../../colors';
 import { getSidebarState, setSidebarState } from '../../../utility';
 
 export type ItemProps = {
-  title: string;
-  icon: any;
-  to: string;
+  Title: string;
+  Icon: string;
+  To: string;
 };
 export type SideBarProps = {
   checked?: boolean;
@@ -24,6 +24,7 @@ export type SideBarProps = {
   phone?: string;
   email?: string;
   image?: string;
+  isEnterpriseChild: boolean;
   activeIndex?: number;
 };
 
@@ -35,12 +36,13 @@ export const SideBar = ({
   phone,
   email,
   image,
+  isEnterpriseChild,
   ...rest
 }: SideBarProps) => {
-  let open = getSidebarState();
+  const [open, setOpen] = React.useState(getSidebarState());
+
   const handleDrawerClose = () => {
-    open = setSidebarState();
-    window.location.reload();
+    setOpen(setSidebarState());
   };
 
   return (
@@ -65,6 +67,7 @@ export const SideBar = ({
               phone={phone}
               email={email}
               image={image}
+              isEnterpriseChild={isEnterpriseChild}
               {...rest}
             />
           </Grid>

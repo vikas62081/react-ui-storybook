@@ -98,11 +98,12 @@ const LIGHT_THEME = {
   secondary: COLORS.WHITE,
   client: COLORS.WHITE,
   selected: {
-    bg: COLORS.MINT[300],
-    color: COLORS.FIREFLY[900],
+    bg: COLORS.MINT[100],
+    color: COLORS.FIREFLY[500],
   },
   notSelected: {
-    bg: COLORS.MINT[100],
+    bg: COLORS.SLATE[100],
+    color: COLORS.FIREFLY[500],
   },
 };
 

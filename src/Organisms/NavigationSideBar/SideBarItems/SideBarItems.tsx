@@ -8,9 +8,30 @@ import { useStyles } from '../navigation.styles';
 import { ItemProps } from '../SideBar/SideBar';
 import { getActiveTabState, setActiveTabState } from '../../../utility';
 
-export const SideBarItem = (props: any) => {
-  const active = getActiveTabState();
+export type SidebarProps = {
+  SideBarItems: ItemProps[] | undefined;
+  activeIndex: number | undefined;
+};
+
+export const SideBarItem = (props: SidebarProps) => {
+  // const active = getActiveTabState();
   const classes = useStyles();
+
+  const getActiveState = () => {
+    if (props.SideBarItems) {
+      const currentIdx = props.SideBarItems.findIndex(
+        (SideBarItem) => SideBarItem.To == window.location.pathname
+      );
+      if (currentIdx != null) {
+        setActiveTabState(currentIdx);
+        return currentIdx;
+      } else {
+        return getActiveTabState();
+      }
+    } else {
+      return getActiveTabState();
+    }
+  };
 
   const handleChange = (index: number) => {
     setActiveTabState(index);
@@ -21,7 +42,7 @@ export const SideBarItem = (props: any) => {
         {props?.SideBarItems?.map((SideBarItem: ItemProps, index: number) => (
           <a
             key={index}
-            href={SideBarItem.to}
+            href={SideBarItem.To}
             style={{ color: 'inherit', textDecoration: 'inherit' }}
           >
             <ListItem
@@ -29,20 +50,27 @@ export const SideBarItem = (props: any) => {
               button
               key={index}
               className={
-                active === index ? classes.selected : classes.notSelected
+                getActiveState() === index
+                  ? classes.selected
+                  : classes.notSelected
               }
               onClick={() => handleChange(index)}
             >
-              <Tooltip title={SideBarItem.title}>
+              <Tooltip title={SideBarItem.Title}>
                 <ListItemIcon
-                  className={
-                    active === index ? classes.activeIcon : classes.inactiveIcon
-                  }
+                  sx={{ minWidth: '48px' }}
+                  // className={
+                  //   active === index ? classes.activeIcon : classes.inactiveIcon
+                  // }
                 >
-                  <img width={30} src={SideBarItem.icon} />
+                  <img
+                    width={30}
+                    src={SideBarItem.Icon}
+                    style={{ marginLeft: '-3px' }}
+                  />
                 </ListItemIcon>
               </Tooltip>
-              <ListItemText primary={SideBarItem.title} />
+              <ListItemText primary={SideBarItem.Title} />
             </ListItem>
           </a>
         ))}

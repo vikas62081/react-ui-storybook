@@ -2,6 +2,7 @@ export * from './Atoms/Switch/ToggleSwitch';
 export * from './Atoms/Button/Button';
 export * from './Atoms/BasicMenu/BasicMenu';
 export * from './Organisms/NavigationSideBar/SideBar/SideBar';
+export * from './Organisms/NavigationSideBar/SideBar/SideBarReact';
 export * from './Organisms/NavigationSideBar/SideBarItems/SideBarItems';
 export * from './Molecules/Alert/Alert';
 export * from './Atoms/Checkbox/Checkbox';

@@ -1,35 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import ListItem from '@mui/material/ListItem';
 import { ListContainer } from '../navigation.styles';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useStyles } from '../navigation.styles';
-import { getActiveTabState, setActiveTabState } from '../../../utility';
 import { ItemProps, SidebarItemProps } from '../type';
 
-export const SideBarItem = (props: SidebarItemProps) => {
-  // const active = getActiveTabState();
+export const SideBarItemReact = (props: SidebarItemProps) => {
+  const [activeItem, setActiveItem] = useState(0);
   const classes = useStyles();
 
-  const getActiveState = () => {
-    if (props.SideBarItems) {
-      const currentIdx = props.SideBarItems.findIndex(
-        (SideBarItem) => SideBarItem?.to == window.location.pathname
-      );
-      if (currentIdx != null) {
-        setActiveTabState(currentIdx);
-        return currentIdx;
-      } else {
-        return getActiveTabState();
-      }
-    } else {
-      return getActiveTabState();
-    }
-  };
-
   const handleChange = (index: number) => {
-    setActiveTabState(index);
+    setActiveItem(index);
   };
   return (
     <>
@@ -45,9 +28,7 @@ export const SideBarItem = (props: SidebarItemProps) => {
               button
               key={index}
               className={
-                getActiveState() === index
-                  ? classes.selected
-                  : classes.notSelected
+                activeItem == index ? classes.selected : classes.notSelected
               }
               onClick={() => handleChange(index)}
             >
@@ -58,11 +39,7 @@ export const SideBarItem = (props: SidebarItemProps) => {
                   //   active === index ? classes.activeIcon : classes.inactiveIcon
                   // }
                 >
-                  <img
-                    width={30}
-                    src={SideBarItem?.icon}
-                    style={{ marginLeft: '-3px' }}
-                  />
+                  {SideBarItem?.icon}
                 </ListItemIcon>
               </Tooltip>
               <ListItemText primary={SideBarItem?.title} />

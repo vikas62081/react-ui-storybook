@@ -3,16 +3,15 @@ import Box from '@mui/material/Box';
 import { Drawer } from '../Drawer/Drawer';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeftRounded';
 import ChevronRightIcon from '@mui/icons-material/ChevronRightRounded';
-import { SideBarItem } from '../SideBarItems/SideBarItems';
 import { GridContainer, GridItem, MyIconButton } from '../navigation.styles';
 import { SideBarFooter } from '../SideBarFooter/SideBarFooter';
 
 import { Grid } from '@mui/material';
 import { COLORS } from '../../../colors';
-import { getSidebarState, setSidebarState } from '../../../utility';
+import { SideBarItemReact } from '../SideBarItems/SideBarItemsReact';
 import { SideBarProps } from '../type';
 
-export const SideBar = ({
+export const SideBarReact = ({
   SideBarItems,
   activeIndex,
   company,
@@ -21,18 +20,22 @@ export const SideBar = ({
   email,
   image,
   isEnterpriseChild,
+  initialState = false,
   ...rest
 }: SideBarProps) => {
-  const [open, setOpen] = React.useState(getSidebarState());
+  const [open, setOpen] = React.useState(initialState);
 
   const handleDrawerClose = () => {
-    setOpen(setSidebarState());
+    setOpen((pre) => !pre);
   };
 
   return (
     <Box sx={{ display: 'flex' }} data-testid="nextGen-sideBar">
       <Drawer variant="permanent" open={open}>
-        <SideBarItem SideBarItems={SideBarItems} activeIndex={activeIndex} />
+        <SideBarItemReact
+          SideBarItems={SideBarItems}
+          activeIndex={activeIndex}
+        />
         <GridItem>
           <MyIconButton onClick={handleDrawerClose} data-testid="handle-click">
             {open ? (

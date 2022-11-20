@@ -18,9 +18,9 @@ const StyledAppBar = styled(AppBar)({
   borderBottom: '1px solid #E2E8F0',
 });
 export type ListProps = {
-  Title: string;
-  Icon: string;
-  To: string;
+  title: string;
+  icon: string;
+  to: string;
 };
 export type ButtonAppBarProps = {
   clientId?: string;
@@ -80,7 +80,7 @@ export const ButtonAppBar = ({
           </Box>
           {optionList?.map((option, index: number) => (
             <ContainedButton
-              href={option.To}
+              href={option?.to}
               key={index}
               sx={{
                 mr: 2,
@@ -95,12 +95,12 @@ export const ButtonAppBar = ({
               color="secondary"
               size="small"
             >
-              {option.Icon && (
+              {option?.icon && (
                 <ListItemIcon sx={{ minWidth: '25px' }}>
-                  <img width={20} src={option.Icon} />
+                  {option?.icon}
                 </ListItemIcon>
               )}
-              {option.Title}
+              {option?.title}
             </ContainedButton>
           ))}
           <BasicMenu list={menuList} userName={userName} />

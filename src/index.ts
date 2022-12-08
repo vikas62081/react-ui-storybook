@@ -12,3 +12,4 @@ export * from './Molecules/DateRange/DateRange';
 export * from './Organisms/Header/Header';
 export * from './Organisms/Card/Card';
 export * from './Organisms/Stepper/Stepper';
+export * from './Organisms/CompliantCard/CompliantCard';

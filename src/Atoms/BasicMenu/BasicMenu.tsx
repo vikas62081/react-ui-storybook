@@ -15,6 +15,7 @@ import { COLORS } from '../../colors';
 export type MenuProps = {
   list?: ListProps[];
   userName?: string;
+  size?: 'medium' | 'large' | 'small';
 };
 
 const theme = createTheme({
@@ -25,7 +26,7 @@ const theme = createTheme({
   },
 });
 
-export const BasicMenu = ({ list, userName }: MenuProps) => {
+export const BasicMenu = ({ list, userName, size = 'medium' }: MenuProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const classes = useStyles();
@@ -48,6 +49,7 @@ export const BasicMenu = ({ list, userName }: MenuProps) => {
           endIcon={<KeyboardArrowDownIcon sx={{ color: COLORS.SLATE[400] }} />}
           variant="outlined"
           color="primary"
+          size={size}
           sx={{ color: COLORS.FIREFLY[500] }}
         >
           {userName}

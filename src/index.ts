@@ -13,3 +13,4 @@ export * from './Organisms/Header/Header';
 export * from './Organisms/Card/Card';
 export * from './Organisms/Stepper/Stepper';
 export * from './Organisms/CompliantCard/CompliantCard';
+export * from './Atoms/ToggleButton/ToggleButton';

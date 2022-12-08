@@ -16,4 +16,27 @@ const Template: Story<any> = (args) => (
 
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  effectiveDate: new Date().toLocaleDateString(),
+  expiresDate: new Date().toLocaleDateString(),
+  title: 'Workers Compensation',
+  id: 'WE227784A',
+  agency: 'Adam Osborn',
+  carrier: 'State Farm Insurance',
+  dropdown1: 'NAIC: 7803',
+  rating: 'AM Best Rating: A++',
+  complaint: '100% Compliant',
+  dropdown1Option: [
+    {
+      title: 'Hey',
+    },
+  ],
+  ratingOption: [
+    {
+      title: 'Hello',
+    },
+    {
+      title: 'Hey',
+    },
+  ],
+};

@@ -19,8 +19,8 @@ const StyledAppBar = styled(AppBar)({
 });
 export type ListProps = {
   title: string;
-  icon: string;
-  to: string;
+  icon?: string;
+  to?: string;
 };
 export type ButtonAppBarProps = {
   clientId?: string;

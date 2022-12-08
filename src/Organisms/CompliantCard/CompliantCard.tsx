@@ -4,8 +4,44 @@ import CustomizedCard from '../Card/Card';
 import { COLORS } from '../../colors';
 import { BasicMenu } from '../../Atoms/BasicMenu/BasicMenu';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { COIToggleButton } from '../../Atoms/ToggleButton/ToggleButton';
 
-export default function CompliantCard() {
+export interface ICompliantCard {
+  effectiveDate: Date;
+  expiresDate: Date;
+  title: string;
+  id: string;
+  agency: string;
+  carrier: string;
+  dropdown1: string;
+  dropdown1Option: any[];
+  rating: string;
+  ratingOption: any[];
+  complaint: string;
+}
+
+export default function CompliantCard(props: ICompliantCard) {
+  const {
+    effectiveDate,
+    expiresDate,
+    title,
+    id,
+    agency,
+    carrier,
+    dropdown1,
+    rating,
+    complaint,
+    dropdown1Option,
+    ratingOption,
+  } = props;
+  const options = [
+    { value: 'active', label: 'Active' },
+    { value: 'inactive', label: 'Inactive' },
+  ];
+
+  const handleChange = (value: any) => {
+    console.log(value);
+  };
   return (
     <CustomizedCard style={{ padding: 8 }}>
       <Grid container direction="column" spacing={1}>
@@ -13,16 +49,16 @@ export default function CompliantCard() {
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography color="text.secondary" variant="h6">
-                General Liability
+                {title}
                 <span
                   style={{
                     textDecoration: 'underline',
                     letterSpacing: 2,
                     fontSize: '70%',
-                    marginLeft: 2,
+                    marginLeft: 4,
                   }}
                 >
-                  R2253604A
+                  {id}
                 </span>
               </Typography>
             </Grid>
@@ -42,7 +78,7 @@ export default function CompliantCard() {
               variant="subtitle1"
               component="div"
             >
-              78% Compliant
+              {complaint}
             </Typography>
           </Grid>
         </Grid>
@@ -57,7 +93,8 @@ export default function CompliantCard() {
                 fontWeight: 600,
               }}
             >
-              Effective: <span style={{ fontWeight: 400 }}>03/10/2022</span>
+              Effective:{' '}
+              <span style={{ fontWeight: 400 }}>{effectiveDate}</span>
             </Typography>
           </Grid>
           <Grid sm={2} item>
@@ -70,13 +107,22 @@ export default function CompliantCard() {
                 fontWeight: 600,
               }}
             >
-              Expires: <span style={{ fontWeight: 400 }}>03/10/2022</span>
+              Expires: <span style={{ fontWeight: 400 }}>{expiresDate}</span>
             </Typography>
           </Grid>
           <Grid sm={2} item>
-            <Button variant="outlined" size="small">
-              Toggle
-            </Button>
+            <COIToggleButton
+              options={options}
+              activeTab={options[0]}
+              onTabChanged={handleChange}
+              groupStyle={{ border: '1px #E2E8F0 solid', borderRadius: 20 }}
+              optionStyle={{
+                padding: '0 8px',
+                borderRadius: 20,
+                margin: 2,
+                border: 0,
+              }}
+            />
           </Grid>
         </Grid>
         <Grid item xs={12} sm container>
@@ -88,7 +134,7 @@ export default function CompliantCard() {
                   color="text.secondary"
                   style={{ textTransform: 'uppercase' }}
                 >
-                  Agency
+                  {agency}
                 </Typography>
                 <Typography variant="body2">Adam Osborn</Typography>
               </Grid>
@@ -100,17 +146,17 @@ export default function CompliantCard() {
                 >
                   Carrier
                 </Typography>
-                <Typography variant="body2">State Farm Insurance</Typography>
-              </Grid>
-              <Grid item>
-                <BasicMenu list={[]} userName={'NAIC: 983473'} size="small" />
+                <Typography variant="body2">{carrier}</Typography>
               </Grid>
               <Grid item>
                 <BasicMenu
-                  list={[]}
-                  userName={'AM Best Rating:: A++'}
+                  list={dropdown1Option}
+                  userName={dropdown1}
                   size="small"
                 />
+              </Grid>
+              <Grid item>
+                <BasicMenu list={ratingOption} userName={rating} size="small" />
               </Grid>
             </Grid>
           </Grid>

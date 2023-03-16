@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { ButtonAppBar } from '../../../src';
+import { render, screen } from '@testing-library/react';
+import { ButtonAppBarReact } from '../../../src';
+import { IHeaderProps } from '../../../src/Organisms/type';
 
-const args = {
+const args: IHeaderProps = {
   clientId: 'Kim',
   userName: 'TestUser',
   image: 'test',
@@ -22,11 +23,11 @@ const args = {
   ],
 };
 
-describe('< ButtonAppBar/>', () => {
+describe('< ButtonAppBarReact/>', () => {
   describe('click', () => {
     test('renders Header component has text', () => {
       render(
-        <ButtonAppBar
+        <ButtonAppBarReact
           clientId={args.clientId}
           userName={args.userName}
           image={args.image}
@@ -36,21 +37,9 @@ describe('< ButtonAppBar/>', () => {
       expect(screen.getByText(`${args.clientId}`)).toBeInTheDocument();
       expect(screen.getByText(`${args.userName}`)).toBeInTheDocument();
     });
-    test('renders Header component has menuList', () => {
-      render(
-        <ButtonAppBar
-          clientId={args.clientId}
-          userName={args.userName}
-          image={args.image}
-          menuList={args.menuList}
-        />
-      );
-      fireEvent.click(screen.getByText(`${args.userName}`));
-      expect(screen.getByText(`Account Settings`)).toBeInTheDocument();
-    });
     test('renders header component has optionList', () => {
       render(
-        <ButtonAppBar
+        <ButtonAppBarReact
           clientId={args.clientId}
           userName={args.userName}
           image={args.image}

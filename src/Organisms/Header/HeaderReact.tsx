@@ -5,10 +5,10 @@ import { COLORS } from '../../colors';
 import styled from '@emotion/styled';
 import { Divider, Toolbar, Typography } from '@mui/material';
 import { ContainedButton } from '../../Atoms/Button/Button';
-import { BasicMenu } from '../../Atoms/BasicMenu/BasicMenu';
 import { Image } from '../../Common/Iconimage';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { IHeaderProps, IListProps } from '../type';
+import { BasicMenuReact } from '../../Atoms/BasicMenu/BasicMenuReact';
 
 const StyledAppBar = styled(AppBar)({
   minHeight: 80,
@@ -19,14 +19,21 @@ const StyledAppBar = styled(AppBar)({
   borderBottom: '1px solid #E2E8F0',
 });
 
-export const ButtonAppBar = ({
+export const ButtonAppBarReact = ({
   image,
   userName,
   clientId,
   optionList,
   menuList,
+  onItemClick,
+  onButtonClick,
   ...props
 }: IHeaderProps) => {
+  const handleButtonClick = (item: IListProps) => {
+    if (typeof onButtonClick === 'function') {
+      onButtonClick(item);
+    }
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <StyledAppBar {...props}>
@@ -68,7 +75,7 @@ export const ButtonAppBar = ({
           </Box>
           {optionList?.map((option: IListProps, index: number) => (
             <ContainedButton
-              href={option.to}
+              href={option?.to}
               key={index}
               sx={{
                 mr: 2,
@@ -82,20 +89,21 @@ export const ButtonAppBar = ({
               }}
               color="secondary"
               size="small"
+              onClick={() => handleButtonClick(option)}
             >
               {option?.icon && (
                 <ListItemIcon sx={{ minWidth: '25px' }}>
-                  {typeof option.icon === 'string' ? (
-                    <img width={20} src={option.icon} />
-                  ) : (
-                    option?.icon
-                  )}
+                  {option.icon}
                 </ListItemIcon>
               )}
-              {option.title}
+              {option?.title}
             </ContainedButton>
           ))}
-          <BasicMenu list={menuList} userName={userName} />
+          <BasicMenuReact
+            list={menuList}
+            userName={userName}
+            onItemClick={onItemClick}
+          />
         </Toolbar>
       </StyledAppBar>
     </Box>

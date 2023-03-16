@@ -93,3 +93,36 @@ export const COLORS = {
     900: '#0f172a',
   },
 };
+
+//need this code in future
+
+// const DARK_THEME = {
+//   type: 'dark',
+//   primary: COLORS.WHITE,
+//   secondary: COLORS.FIREFLY[500],
+//   client: COLORS.FIREFLY[50],
+//   selected: {
+//     bg: COLORS.MINT[400],
+//     color: COLORS.WHITE,
+//   },
+//   notSelected: {
+//     bg: COLORS.MINT[500],
+//     color: COLORS.WHITE,
+//   },
+//   iconColor: 'white',
+// };
+const LIGHT_THEME = {
+  primary: COLORS.FIREFLY[500],
+  secondary: COLORS.WHITE,
+  client: COLORS.WHITE,
+  selected: {
+    bg: COLORS.MINT[100],
+    color: COLORS.FIREFLY[500],
+  },
+  notSelected: {
+    bg: COLORS.SLATE[100],
+    color: COLORS.FIREFLY[500],
+  },
+};
+
+export const THEME_PROVIDER = LIGHT_THEME;

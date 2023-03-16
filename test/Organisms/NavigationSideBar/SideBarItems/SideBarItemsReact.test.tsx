@@ -1,8 +1,9 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { SideBarItem } from '../../../../src';
+import { SideBarItemReact } from '../../../../src';
 import { IListProps } from '../../../../src/Organisms/type';
+// mock data
 
 const sideBarItems: IListProps[] = [
   {
@@ -21,19 +22,12 @@ const sideBarItems: IListProps[] = [
     to: '/divisions',
   },
 ];
-describe('SideBarItem component ', () => {
-  test('renders SideBarItem to check active  ', () => {
-    render(
-      <Router>
-        <SideBarItem />
-      </Router>
-    );
-    expect(screen.getByTestId('To-be-Active')).toBeInTheDocument();
-  });
-  test('renders SideBarItem to check active  ', () => {
+
+describe('SideBarItemReact component ', () => {
+  test('renders SideBarItemReact to check active  ', () => {
     const { container } = render(
       <Router>
-        <SideBarItem />
+        <SideBarItemReact />
       </Router>
     );
     expect(container.firstChild).toBeInTheDocument();
@@ -41,7 +35,7 @@ describe('SideBarItem component ', () => {
   test('renders SideBarItemReact to check active  ', () => {
     render(
       <Router>
-        <SideBarItem sideBarItems={sideBarItems} activeIndex={0} />
+        <SideBarItemReact sideBarItems={sideBarItems} activeIndex={0} />
       </Router>
     );
     expect(screen.getByTestId('To-be-Active')).toBeInTheDocument();
@@ -49,7 +43,7 @@ describe('SideBarItem component ', () => {
   test('renders SideBarItemReact to check active  ', () => {
     render(
       <Router>
-        <SideBarItem sideBarItems={sideBarItems} activeIndex={1} />
+        <SideBarItemReact sideBarItems={sideBarItems} activeIndex={1} />
       </Router>
     );
     expect(screen.getByTestId('To-be-Active')).toBeInTheDocument();

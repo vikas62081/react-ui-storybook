@@ -1,9 +1,10 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { BasicMenu, MenuProps } from '../src';
+import { BasicMenu } from '../src';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import LockIcon from '@mui/icons-material/Lock';
+import { IMenuProps } from '../src/Atoms/type';
 
 const meta: Meta = {
   title: 'Components/Atoms/Basicmenu',
@@ -39,24 +40,28 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<MenuProps> = (args) => <BasicMenu {...args} />;
+const Template: Story<IMenuProps> = (args) => <BasicMenu {...args} />;
 
-export const SelectContainer = Template.bind({});
+export const Default = Template.bind({});
 
-SelectContainer.args = {
+Default.args = {
   userName: 'TestUser',
+  onItemClick: (item) => console.log(item),
   list: [
     {
       title: 'Account Settings',
       icon: <SettingsIcon fontSize="small" />,
+      // to: '/',
     },
     {
       title: 'Change Password',
       icon: <LockIcon fontSize="small" />,
+      to: '/',
     },
     {
       title: 'Log out',
       icon: <LogoutOutlinedIcon fontSize="small" />,
+      to: '/',
     },
   ],
 };

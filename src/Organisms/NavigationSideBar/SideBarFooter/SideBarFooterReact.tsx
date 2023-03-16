@@ -33,7 +33,7 @@ export const SideBarFooter = (props: any) => {
             <StyledCompanyTypography>{company}</StyledCompanyTypography>
             <StyledTypography>{address}</StyledTypography>
             <StyledTypography>{phone}</StyledTypography>
-            <StyledTypography sx={{ width: '230px', wordWrap: 'break-word' }}>
+            <StyledTypography sx={{ width: '190px', wordWrap: 'break-word' }}>
               {email}
             </StyledTypography>
           </ClientContent>

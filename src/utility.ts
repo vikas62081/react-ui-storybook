@@ -9,7 +9,7 @@ const getLocalStorage = (key: string) => {
 };
 
 export const getSidebarState = () => {
-  return getLocalStorage('sidebar') || false;
+  return getLocalStorage('sidebar') == null ? true : getLocalStorage('sidebar');
 };
 
 export const setSidebarState = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { ButtonAppBar } from '../src';
+import { ButtonAppBarReact } from '../src';
 import myCOILogo from '../src/assets/myCOI.svg';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -8,8 +8,8 @@ import LockIcon from '@mui/icons-material/Lock';
 import { IHeaderProps } from '../src/Organisms/type';
 
 const meta: Meta = {
-  title: 'Components/Organisms/Header',
-  component: ButtonAppBar,
+  title: 'Components/Organisms/HeaderReact',
+  component: ButtonAppBarReact,
   argTypes: {
     onClick: { action: 'clicked' },
     title: {
@@ -34,11 +34,13 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<IHeaderProps> = (args) => <ButtonAppBar {...args} />;
+const Template: Story<IHeaderProps> = (args) => <ButtonAppBarReact {...args} />;
 
 export const Default = Template.bind({});
 
 Default.args = {
+  title1: 'Explore myCOI Central',
+  title2: 'Feedback',
   clientId: 'Kim',
   userName: 'TestUser',
   image: myCOILogo,

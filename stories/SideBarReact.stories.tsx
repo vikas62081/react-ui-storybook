@@ -8,13 +8,13 @@ import LeaderboardRoundedIcon from '@mui/icons-material/LeaderboardRounded';
 import BookmarkRoundedIcon from '@mui/icons-material/BookmarkRounded';
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
-import { SideBar } from '../src';
+import { SideBarReact } from '../src';
 import myCOILogo from '../src/assets/myCOI.svg';
 import { SideBarProps } from '../src/Organisms/type';
 
 const meta: Meta = {
-  title: 'Components/Organisms/SideBar',
-  component: SideBar,
+  title: 'Components/Organisms/SideBarReact',
+  component: SideBarReact,
   argTypes: {
     onClick: { action: 'clicked' },
     title: {
@@ -39,7 +39,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<SideBarProps> = (args) => <SideBar {...args} />;
+const Template: Story<SideBarProps> = (args) => <SideBarReact {...args} />;
 
 export const Default = Template.bind({});
 

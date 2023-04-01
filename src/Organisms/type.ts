@@ -18,6 +18,8 @@ export type SideBarProps = {
   isEnterpriseChild: boolean;
   activeIndex?: number;
   initialState?: boolean;
+  showFooter?: boolean;
+  themeMode: 'DARK' | 'LIGHT';
 };
 
 export type SidebarItemProps = {

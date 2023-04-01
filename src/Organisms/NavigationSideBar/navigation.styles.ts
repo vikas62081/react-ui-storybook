@@ -28,24 +28,6 @@ export const useStyles = makeStyles({
       backgroundColor: COLORS.SLATE[100],
     },
   },
-  notSelected: {
-    color: THEME_PROVIDER.notSelected.color,
-    '&:hover': {
-      background: `${THEME_PROVIDER.notSelected.bg} !important`,
-      borderRadius: '4px',
-      color: THEME_PROVIDER.notSelected.color,
-    },
-  },
-  selected: {
-    background: THEME_PROVIDER.selected.bg,
-    color: THEME_PROVIDER.selected.color,
-    borderRadius: '4px',
-    '&:hover': {
-      background: `${THEME_PROVIDER.selected.bg} !important`,
-      color: THEME_PROVIDER.selected.color,
-      borderRadius: '4px',
-    },
-  },
   activeIcon: {
     color: THEME_PROVIDER.selected.bg,
   },
@@ -69,7 +51,6 @@ export const useStyles = makeStyles({
     marginBottom: 10,
     fontSize: 'smaller',
   },
-
   footerLogo: {
     minWidth: 0,
     padding: '0 14px 0 3px',

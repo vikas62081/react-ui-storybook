@@ -4,13 +4,10 @@ import ListItem from '@mui/material/ListItem';
 import { ListContainer } from '../navigation.styles';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { useStyles } from '../navigation.styles';
 import { getActiveTabState, setActiveTabState } from '../../../utility';
 import { IListProps, SidebarItemProps } from '../../type';
 
 export const SideBarItem = (props: SidebarItemProps) => {
-  const classes = useStyles();
-
   const getActiveState = () => {
     if (props.sideBarItems) {
       const currentIdx = props.sideBarItems.findIndex(
@@ -44,23 +41,21 @@ export const SideBarItem = (props: SidebarItemProps) => {
               button
               key={index}
               className={
-                getActiveState() === index
-                  ? classes.selected
-                  : classes.notSelected
+                getActiveState() === index ? 'selected' : 'not-selected'
               }
               onClick={() => handleChange(index)}
             >
               <Tooltip title={sideBarItem?.title}>
                 <ListItemIcon sx={{ minWidth: '48px' }}>
                   {typeof sideBarItem.icon === 'string' ? (
-                      <img
-                        width={30}
-                        src={sideBarItem?.icon}
-                        style={{ marginLeft: '-3px' }}
-                      />
-                    ) : (
-                      sideBarItem?.icon
-                    )}
+                    <img
+                      width={30}
+                      src={sideBarItem?.icon}
+                      style={{ marginLeft: '-3px' }}
+                    />
+                  ) : (
+                    sideBarItem?.icon
+                  )}
                 </ListItemIcon>
               </Tooltip>
               <ListItemText primary={sideBarItem?.title} />

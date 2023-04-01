@@ -25,7 +25,7 @@ export const SideBarReact = ({
   topSpace = true,
   initialState = false,
   showFooter = false,
-  themeMode = 'DARK',
+  themeMode = 'LIGHT',
   ...rest
 }: SideBarProps) => {
   const [open, setOpen] = React.useState(initialState);

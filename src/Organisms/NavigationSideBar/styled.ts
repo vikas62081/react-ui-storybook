@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { COLORS } from '../../colors';
 export const LightStyledTheme = styled.div`
   .selected {
-    background: ${COLORS.MINT[200]};
+    background: ${COLORS.MINT[300]};
     border-radius: 4px;
     &:hover{
-      background: ${COLORS.MINT[300]};
+      background: ${COLORS.MINT[200]};
       
     },
   }

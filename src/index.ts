@@ -19,3 +19,4 @@ export * from './Atoms/BasicMenu/BasicMenuReact';
 export * from './Organisms/NavigationSideBar/SideBarItems/SideBarItemsReact';
 export * from './Organisms/NavigationSideBar/SideBar/SideBarReact';
 export * from './Organisms/Header/HeaderReact';
+export * from './Organisms/Auth';

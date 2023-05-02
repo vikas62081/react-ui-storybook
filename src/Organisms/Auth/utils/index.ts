@@ -3,5 +3,6 @@ export const replaceWithValue = (
   value: string,
   pattern = '<>'
 ) => {
-  return sentence.replace(pattern, value);
+  if (!sentence) null;
+  return sentence?.replace(pattern, value);
 };

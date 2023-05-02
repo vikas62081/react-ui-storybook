@@ -1,38 +1,57 @@
 import { DialogContent } from '@mui/material';
 import React, { useState } from 'react';
 import AuthHeader from '../Header';
-import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 import AuthContent from '../AuthContent';
 import AuthFooter from '../Footer';
-const EMAIL_VERIFICATION_MAX_STEPS = 2;
-const INITIAL_ACTIVE_STEP = 0;
+import { AUTH_MAX_STEPS, INITIAL_ACTIVE_STEP } from '../../constant';
+import ListApp from './ListApp';
+import AppCodeVerification from './AppCodeVetification';
 
-const AppAuth = ({ handleExit, labels }) => {
+const AppAuth = ({ handleExit, labels }: any) => {
   const [activeStep, setActiveStep] = useState(INITIAL_ACTIVE_STEP);
-  const [disableNextButton, setDisableNextButton] = useState(true);
+  const [disableNextButton, setDisableNextButton] = useState(false);
 
   const [code, setCode] = useState('');
   const [isOTPVerified, setIsOTPVerified] = useState(false);
   const [hasError, setHasError] = useState(false);
-
-  const [contact, setContact] = useState('abc@gmail.com');
-  const [isOTPSent, setIsOTPSent] = useState(false);
-
+  const [qrCode, setQrCode] = useState(123567);
+  const handleOTPVerification = (e: any) => {
+    e.preventDefault();
+    // setIsOTPVerified(true);
+    setHasError(true);
+  };
+  const handleDisableNextButton = () => {
+    setDisableNextButton(true);
+  };
   return (
     <>
       <DialogContent>
         <AuthHeader
           activeStep={activeStep}
-          totalSteps={EMAIL_VERIFICATION_MAX_STEPS}
+          totalSteps={AUTH_MAX_STEPS}
           icon={<labels.header.icon fontSize="large" />}
           handleExit={handleExit}
           headersLabel={labels?.header}
         />
 
-        <AuthContent>Hello</AuthContent>
+        <AuthContent>
+          {activeStep === 0 && <ListApp />}
+          {activeStep === 1 && (
+            <AppCodeVerification
+              qrCode={qrCode}
+              labels={labels.content}
+              code={code}
+              setCode={setCode}
+              isOTPVerified={isOTPVerified}
+              hasError={hasError}
+              verifyOTP={handleOTPVerification}
+            />
+          )}
+        </AuthContent>
         <AuthFooter
           onClickNextBtn={() => {
             setActiveStep((pre) => pre + 1);
+            handleDisableNextButton();
           }}
           onClickBackbtn={() => setActiveStep((pre) => pre - 1)}
           activeStep={activeStep}

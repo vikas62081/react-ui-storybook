@@ -12,6 +12,7 @@ import InfoTwoToneIcon from '@mui/icons-material/InfoTwoTone';
 import { replaceWithValue } from '../utils';
 import '../auth.css';
 
+//second step
 export const VerifyOTP = ({
   code,
   setCode,
@@ -20,6 +21,7 @@ export const VerifyOTP = ({
   verifyOTP,
   contact,
   labels,
+  isReSendCodeAllowed = true,
 }: any) => {
   const {
     description,
@@ -27,12 +29,15 @@ export const VerifyOTP = ({
     inputLabel,
     inputType = 'number',
     placeholder,
-  } = labels;
-  const inputRef = useRef<any>(null); //
+    submitButton = 'Verify and enable 2FA',
+  } = labels ?? {};
+
+  const inputRef = useRef<any>(null);
+
   const handleInputChange = (e: any) => {
     const input = e.target.value;
     setCode(input);
-    if (input.length === 6) {
+    if (input?.length === 6) {
       inputRef?.current?.blur();
     }
   };
@@ -55,7 +60,7 @@ export const VerifyOTP = ({
               onChange={handleInputChange}
               disabled={disabled || isOTPVerified}
               required
-              error={code.length !== 6}
+              error={code?.length !== 6}
               style={{
                 letterSpacing: code?.length === 0 ? 0 : 20,
               }}
@@ -80,9 +85,9 @@ export const VerifyOTP = ({
                 variant="contained"
                 color="primary"
                 type="submit"
-                disabled={code.length !== 6}
+                disabled={code?.length !== 6}
               >
-                Verify and enable 2FA
+                {submitButton}
               </Button>
             )}
             {hasError && (
@@ -90,12 +95,13 @@ export const VerifyOTP = ({
                 variant="contained"
                 color="error"
                 startIcon={<InfoTwoToneIcon />}
+                style={{ minWidth: 196 }}
               >
                 Code is incorrect
               </Button>
             )}
           </Box>
-          {hasError && (
+          {hasError && isReSendCodeAllowed && (
             <Box sx={{ margin: '20px 0 0 15px' }}>
               <Typography
                 component={Button}
@@ -112,6 +118,7 @@ export const VerifyOTP = ({
   );
 };
 
+//First step
 export const SendOTP = ({
   handleSendOTP,
   contact,

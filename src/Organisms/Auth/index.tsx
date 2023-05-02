@@ -48,12 +48,14 @@ export const Auth = () => {
             }}
           />
         )}
+
         {openConfirmationDialog && (
           <AuthConfirmationDialog
             handleClose={handleDialogClose}
             handleAuthClose={handleAuthClose}
           />
         )}
+
         {[AUTH_TYPE.email, AUTH_TYPE.sms].includes(authType) &&
           !openConfirmationDialog && (
             <AuthForm

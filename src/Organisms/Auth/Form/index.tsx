@@ -4,9 +4,8 @@ import AuthContent from '../components/AuthContent';
 import AuthHeader from '../components/Header';
 import AuthFooter from '../components/Footer';
 import { VerifyOTP, SendOTP } from '../components';
+import { AUTH_MAX_STEPS, INITIAL_ACTIVE_STEP } from '../constant';
 
-const EMAIL_VERIFICATION_MAX_STEPS = 2;
-const INITIAL_ACTIVE_STEP = 0;
 const AuthForm = ({ handleExit, labels }: any) => {
   const [activeStep, setActiveStep] = useState(INITIAL_ACTIVE_STEP);
   const [disableNextButton, setDisableNextButton] = useState(true);
@@ -57,7 +56,7 @@ const AuthForm = ({ handleExit, labels }: any) => {
     <DialogContent>
       <AuthHeader
         activeStep={activeStep}
-        totalSteps={EMAIL_VERIFICATION_MAX_STEPS}
+        totalSteps={AUTH_MAX_STEPS}
         icon={<labels.header.icon fontSize="large" />}
         handleExit={handleExit}
         headersLabel={labels?.header}

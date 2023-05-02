@@ -56,6 +56,7 @@ const SelectAuth = ({ handleChange, handleClose }: any) => {
               href="/"
               gutterBottom
               style={{ display: 'inline', marginLeft: 10 }}
+              marginLeft={1}
             >
               Learn more
             </Typography>

@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { COLORS } from '../../../colors';
+import { COLORS } from '../../../../colors';
 
 const AuthHeader = ({
   activeStep,

@@ -2,7 +2,7 @@ import { Alert, Divider, Grid, Link, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import QrCode2TwoToneIcon from '@mui/icons-material/QrCode2TwoTone';
 import { COLORS } from '../../../../colors';
-import { VerifyOTP } from '..';
+import VerifyOTP from '../VerifyOTP';
 
 const AppCodeVerification = ({
   qrCode,
@@ -77,7 +77,7 @@ const AppCodeVerification = ({
           isOTPVerified={isOTPVerified}
           hasError={hasError}
           verifyOTP={verifyOTP}
-          labels={labels[0]}
+          labels={labels}
           isReSendCodeAllowed={false}
         />
         {isOTPVerified && (

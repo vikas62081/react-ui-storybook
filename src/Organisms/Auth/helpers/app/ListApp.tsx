@@ -1,21 +1,15 @@
-import { Avatar, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
-import PlayStore from '../../../../assets/playStore.svg';
 import Twilio from '../../../../assets/twilio.svg';
-import AppStore from '../../../../assets/appStore.svg';
 import QrCode2TwoToneIcon from '@mui/icons-material/QrCode2TwoTone';
 import { COLORS } from '../../../../colors';
 import { APP_SERVICE_PROVIDER } from '../../constant';
 
-const ListApp = () => {
+const ListApp = ({ labels }: any) => {
+  const { description, title } = labels;
   return (
     <Grid>
-      <Typography marginBottom={2}>
-        First, download and install the Twilio Authy authentication app on your
-        smartphone. If you already have Authy installed, you can continue to the
-        next step to verify your code.
-      </Typography>
-
+      <Typography marginBottom={2}>{description}</Typography>
       <Grid
         style={{ background: COLORS.SLATE[100] }}
         padding={2}
@@ -30,7 +24,7 @@ const ListApp = () => {
             />
           </Grid>
           <Grid item>
-            <Typography variant="h6">Twilio Authy</Typography>
+            <Typography variant="h6">{title}</Typography>
           </Grid>
         </Grid>
         <Grid container flexWrap="inherit" gap={2}>

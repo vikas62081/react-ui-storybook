@@ -12,8 +12,7 @@ import InfoTwoToneIcon from '@mui/icons-material/InfoTwoTone';
 import { replaceWithValue } from '../utils';
 import '../auth.css';
 
-//second step
-export const VerifyOTP = ({
+const VerifyOTP = ({
   code,
   setCode,
   isOTPVerified,
@@ -118,60 +117,4 @@ export const VerifyOTP = ({
   );
 };
 
-//First step
-export const SendOTP = ({
-  handleSendOTP,
-  contact,
-  setContact,
-  isOTPSent,
-  labels,
-}: any) => {
-  const {
-    description,
-    disabled = false,
-    inputLabel,
-    inputType = 'text',
-    placeholder,
-  } = labels;
-
-  return (
-    <>
-      <Typography gutterBottom marginBottom={5}>
-        {description}
-      </Typography>
-
-      <form onSubmit={handleSendOTP}>
-        <Box display="flex" alignItems="center">
-          <FormControl>
-            <FormLabel sx={{ fontWeight: '500' }}>{inputLabel}</FormLabel>
-            <TextField
-              variant="outlined"
-              size="small"
-              placeholder={placeholder}
-              required
-              type={inputType}
-              value={contact}
-              onChange={(e) => setContact(e.target.value)}
-              disabled={disabled}
-            />
-          </FormControl>
-          <Box sx={{ margin: '22px 0 0 15px' }}>
-            {isOTPSent ? (
-              <Button
-                startIcon={<CheckCircleOutlineTwoToneIcon />}
-                variant="contained"
-                color="primary"
-              >
-                Code sent!
-              </Button>
-            ) : (
-              <Button variant="contained" color="primary" type="submit">
-                Submit
-              </Button>
-            )}
-          </Box>
-        </Box>
-      </form>
-    </>
-  );
-};
+export default VerifyOTP;

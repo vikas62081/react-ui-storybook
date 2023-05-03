@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DialogContent from '@mui/material/DialogContent';
-import AuthContent from '../components/AuthContent';
-import AuthHeader from '../components/Header';
-import AuthFooter from '../components/Footer';
-import { VerifyOTP, SendOTP } from '../components';
-import { AUTH_MAX_STEPS, INITIAL_ACTIVE_STEP } from '../constant';
+import AuthContent from '../helpers/Layout/AuthContent';
+import AuthHeader from '../helpers/Layout/Header';
+import AuthFooter from '../helpers/Layout/Footer';
+import {
+  AUTH_MAX_STEPS,
+  AUTH_TYPE,
+  COMPONENTS,
+  INITIAL_ACTIVE_STEP,
+} from '../constant';
 
-const AuthForm = ({ handleExit, labels }: any) => {
+const AuthForm = ({ authType, handleExit, labels }: any) => {
   const [activeStep, setActiveStep] = useState(INITIAL_ACTIVE_STEP);
   const [disableNextButton, setDisableNextButton] = useState(true);
 
   const [code, setCode] = useState('');
   const [isOTPVerified, setIsOTPVerified] = useState(false);
   const [hasError, setHasError] = useState(false);
-
+  const [qrCode, setQrCode] = useState(123567);
   const [contact, setContact] = useState('abc@gmail.com');
   const [isOTPSent, setIsOTPSent] = useState(false);
 
@@ -28,6 +32,7 @@ const AuthForm = ({ handleExit, labels }: any) => {
   const enbaleNextButton = () => {
     setDisableNextButton(false);
   };
+
   const handleDisableNextButton = () => {
     setDisableNextButton(true);
   };
@@ -39,19 +44,19 @@ const AuthForm = ({ handleExit, labels }: any) => {
     enbaleNextButton();
   };
 
-  const contents = [
-    {
-      backBtn: 'Back: Select factor',
-      nextBtn: 'Next: Enter code',
-      Component: SendOTP,
-    },
-    {
-      backBtn: 'Back: Send code',
-      nextBtn: 'Close',
-      Component: VerifyOTP,
-    },
-  ];
-  const { backBtn, nextBtn, Component } = contents[activeStep];
+  useEffect(() => {
+    if (AUTH_TYPE.app === authType) {
+      enbaleNextButton();
+    }
+  }, []);
+
+  const {
+    backBtn,
+    nextBtn,
+    Component,
+    hideNextBtn = false,
+  } = COMPONENTS.filter((auth) => auth.authType.includes(authType))[activeStep];
+
   return (
     <DialogContent>
       <AuthHeader
@@ -74,6 +79,7 @@ const AuthForm = ({ handleExit, labels }: any) => {
           setContact={setContact}
           isOTPSent={isOTPSent}
           labels={labels?.content[activeStep]}
+          qrCode={qrCode}
         />
       </AuthContent>
       <AuthFooter
@@ -87,6 +93,7 @@ const AuthForm = ({ handleExit, labels }: any) => {
         nextBtnText={nextBtn}
         isDisabledNextBtn={disableNextButton}
         isDisabledBackBtn={isOTPVerified}
+        hideNextBtn={hideNextBtn}
       />
     </DialogContent>
   );

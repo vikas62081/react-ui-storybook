@@ -10,7 +10,7 @@ import AuthList from './AuthList';
 import EmailTwoToneIcon from '@mui/icons-material/EmailTwoTone';
 import SmsTwoToneIcon from '@mui/icons-material/SmsTwoTone';
 import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
-import AuthHeader from './Header';
+import AuthHeader from './Layout/Header';
 import ShieldTwoToneIcon from '@mui/icons-material/ShieldTwoTone';
 import { AUTH_TYPE } from '../constant';
 

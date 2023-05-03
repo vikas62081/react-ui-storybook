@@ -8,6 +8,7 @@ const AuthFooter = ({
   onClickNextBtn = () => {},
   isDisabledBackBtn = false,
   isDisabledNextBtn = false,
+  hideNextBtn = false,
   // maxSteps = 3,
   activeStep = 0,
 }) => {
@@ -23,13 +24,15 @@ const AuthFooter = ({
         </Button>
       </Grid>
       <Grid item>
-        <Button
-          variant="outlined"
-          disabled={isDisabledNextBtn}
-          onClick={onClickNextBtn}
-        >
-          {nextBtnText}
-        </Button>
+        {!hideNextBtn && (
+          <Button
+            variant="outlined"
+            disabled={isDisabledNextBtn}
+            onClick={onClickNextBtn}
+          >
+            {nextBtnText}
+          </Button>
+        )}
       </Grid>
     </Grid>
   );
